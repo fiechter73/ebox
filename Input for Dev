@@ -1,0 +1,1 @@
+curl -i -X PUT localhost:8080/contacts/5ac3e34cba295410ac310523 -H "Content-Type: application/json" -d '{"name":"Peter Meyer"}'
