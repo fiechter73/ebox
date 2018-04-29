@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>{{ contact.name }}</h1>
+  <h1>{{ contact.anrede }}  {{ contact.name }}</h1>
   <dl class="list">
     <dt>Address</dt>
     <dd>{{ contact.address }}</dd>
@@ -14,6 +14,7 @@
   <div class="col-md-12">
     <a [routerLink]="['/contact-edit', contact.id]" class="btn btn-success">EDIT</a>
     <button class="btn btn-danger" type="button" (click)="deleteContact(contact.id)">DELETE</button>
+    <a [routerLink]="['/contact']" class="btn btn-danger">BACK</a>
   </div>
 </div>
 </div>

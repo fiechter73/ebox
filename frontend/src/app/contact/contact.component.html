@@ -1,24 +1,32 @@
 <div class="container">
-  <h1>Contact List
+  <h1>
     <a [routerLink]="['/contact-create']" class="btn btn-default btn-lg">
       <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </a>
+      Contact List</a>
   </h1>
   <table class="table">
     <thead>
       <tr>
+        <th>Anrede</th>
         <th>Name</th>
         <th>City</th>
+        <th>Phone</th>
         <th>Email</th>
-        <th>Action</th>
+        <th>Contact Details</th>
+        <th>Contracts Details</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let contact of contacts">
+        <td>{{ contact.anrede }}</td>
         <td>{{ contact.name }}</td>
         <td>{{ contact.city }}</td>
+        <td>{{ contact.phone }}</td>
         <td>{{ contact.email }}</td>
         <td><a [routerLink]="['/contact-detail', contact.id]">Show Detail</a></td>
+        <td><a [routerLink]="['/contact-create']" class="btn btn-primary btn-sm">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+              Contract</a></td>
       </tr>
     </tbody>
   </table>

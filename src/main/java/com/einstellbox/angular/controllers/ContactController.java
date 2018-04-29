@@ -35,6 +35,8 @@ public class ContactController {
     @RequestMapping(method=RequestMethod.PUT, value="/contacts/{id}")
     public Contact update(@PathVariable String id, @RequestBody Contact contact) {
         Contact c = contactRepository.findOne(id);
+        if(contact.getAnrede() != null)
+        	c.setAnrede(contact.getAnrede());
         if(contact.getName() != null)
             c.setName(contact.getName());
         if(contact.getAddress() != null)
