@@ -15,6 +15,7 @@ public class Contract {
     String contractStartDate;
     String contractEndDate;
 
+    
     public Contract() {
     }
 

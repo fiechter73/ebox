@@ -1,6 +1,6 @@
 <div class="container">
-  <h1>Contract List
-    <a [routerLink]="['/contract-create']" class="btn btn-default btn-lg">
+  <h1>Contract List {{contact.name}}
+    <a [routerLink]="['/contract-create', contact.id]" class="btn btn-default btn-lg">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
     </a>
     <a [routerLink]="['/contact']" class="btn btn-danger">BACK</a>

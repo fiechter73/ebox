@@ -127,6 +127,11 @@ var appRoutes = [
         pathMatch: 'full'
     },
     {
+        path: 'contract/:id',
+        component: __WEBPACK_IMPORTED_MODULE_10__contract_contract_component__["a" /* ContractComponent */],
+        data: { title: 'Contract List' }
+    },
+    {
         path: 'contract',
         component: __WEBPACK_IMPORTED_MODULE_10__contract_contract_component__["a" /* ContractComponent */],
         data: { title: 'Contract List' }
@@ -137,7 +142,7 @@ var appRoutes = [
         data: { title: 'Contract Details' }
     },
     {
-        path: 'contract-create',
+        path: 'contract-create/:id',
         component: __WEBPACK_IMPORTED_MODULE_12__contract_create_contract_create_component__["a" /* ContractCreateComponent */],
         data: { title: 'Create Contract' }
     },
@@ -406,7 +411,7 @@ module.exports = ""
 /***/ "./src/app/contact/contact.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h1>\n    <a [routerLink]=\"['/contact-create']\" class=\"btn btn-default btn-lg\">\n      <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n      Contact List</a>\n  </h1>\n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th>Anrede</th>\n        <th>Name</th>\n        <th>City</th>\n        <th>Phone</th>\n        <th>Email</th>\n        <th>Contact Details</th>\n        <th>Contracts Details</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let contact of contacts\">\n        <td>{{ contact.anrede }}</td>\n        <td>{{ contact.name }}</td>\n        <td>{{ contact.city }}</td>\n        <td>{{ contact.phone }}</td>\n        <td>{{ contact.email }}</td>\n        <td><a [routerLink]=\"['/contact-detail', contact.id]\">Show Detail</a></td>\n        <td><a [routerLink]=\"['/contract']\" class=\"btn btn-primary btn-sm\">\n            <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n              Contract List</a></td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+module.exports = "<div class=\"container\">\n  <h1>\n    <a [routerLink]=\"['/contact-create']\" class=\"btn btn-default btn-lg\">\n      <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n      Contact List</a>\n  </h1>\n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th>Anrede</th>\n        <th>Name</th>\n        <th>City</th>\n        <th>Phone</th>\n        <th>Email</th>\n        <th>Contact Details</th>\n        <th>Contracts Details</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let contact of contacts\">\n        <td>{{ contact.anrede }}</td>\n        <td>{{ contact.name }}</td>\n        <td>{{ contact.city }}</td>\n        <td>{{ contact.phone }}</td>\n        <td>{{ contact.email }}</td>\n        <td><a [routerLink]=\"['/contact-detail', contact.id]\">Show Detail</a></td>\n        <td><a [routerLink]=\"['/contract', contact.id]\" class=\"btn btn-primary btn-sm\">\n            <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n              Contract List</a></td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -678,7 +683,7 @@ module.exports = ""
 /***/ "./src/app/contract/contract.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h1>Contract List\n    <a [routerLink]=\"['/contract-create']\" class=\"btn btn-default btn-lg\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n    </a>\n    <a [routerLink]=\"['/contact']\" class=\"btn btn-danger\">BACK</a>\n  </h1>\n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th>Art des Mietobjekts:</th>\n        <th>Boxennummer:</th>\n        <th>Informationen zum Gebäude:</th>\n        <th>Miet Startsatum:</th>\n        <th>Miet Enddatum:</th>\n      </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let contract of contracts\">\n            <td>{{ contract.type }}</td>\n            <td>{{ contract.boxNr }}</td>\n            <td>{{ contract.buildingInfo }}</td>\n            <td>{{ contract.contractStartDate }}</td>\n            <td>{{ contract.contractEndDate }}</td>\n            <td><a [routerLink]=\"['/contract-detail', contract.id]\">Show Detail</a></td>\n        </tr>    \n      </tbody>\n  </table>\n</div>  \n"
+module.exports = "<div class=\"container\">\n  <h1>Contract List {{contact.name}}\n    <a [routerLink]=\"['/contract-create', contact.id]\" class=\"btn btn-default btn-lg\">\n    <span class=\"glyphicon glyphicon-plus\" aria-hidden=\"true\"></span>\n    </a>\n    <a [routerLink]=\"['/contact']\" class=\"btn btn-danger\">BACK</a>\n  </h1>\n  <table class=\"table\">\n    <thead>\n      <tr>\n        <th>Art des Mietobjekts:</th>\n        <th>Boxennummer:</th>\n        <th>Informationen zum Gebäude:</th>\n        <th>Miet Startsatum:</th>\n        <th>Miet Enddatum:</th>\n      </tr>\n    </thead>\n    <tbody>\n        <tr *ngFor=\"let contract of contracts\">\n            <td>{{ contract.type }}</td>\n            <td>{{ contract.boxNr }}</td>\n            <td>{{ contract.buildingInfo }}</td>\n            <td>{{ contract.contractStartDate }}</td>\n            <td>{{ contract.contractEndDate }}</td>\n            <td><a [routerLink]=\"['/contract-detail', contract.id]\">Show Detail</a></td>\n        </tr>    \n      </tbody>\n  </table>\n</div>  \n"
 
 /***/ }),
 
@@ -689,6 +694,7 @@ module.exports = "<div class=\"container\">\n  <h1>Contract List\n    <a [router
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ContractComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("./node_modules/@angular/common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -700,14 +706,25 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var ContractComponent = /** @class */ (function () {
-    function ContractComponent(http) {
+    function ContractComponent(router, route, http) {
+        this.router = router;
+        this.route = route;
         this.http = http;
+        this.contact = {};
     }
     ContractComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.getContactDetail(this.route.snapshot.params['id']);
         this.http.get('/contracts').subscribe(function (data) {
             _this.contracts = data;
+        });
+    };
+    ContractComponent.prototype.getContactDetail = function (id) {
+        var _this = this;
+        this.http.get('/contacts/' + id).subscribe(function (data) {
+            _this.contact = data;
         });
     };
     ContractComponent = __decorate([
@@ -716,7 +733,7 @@ var ContractComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/contract/contract.component.html"),
             styles: [__webpack_require__("./src/app/contract/contract.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
     ], ContractComponent);
     return ContractComponent;
 }());

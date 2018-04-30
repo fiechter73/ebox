@@ -40,6 +40,11 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'contract/:id',
+    component: ContractComponent,
+    data: { title: 'Contract List' }
+  },
+  {
     path: 'contract',
     component: ContractComponent,
     data: { title: 'Contract List' }
@@ -50,7 +55,7 @@ const appRoutes: Routes = [
     data: { title: 'Contract Details' }
   },
   {
-    path: 'contract-create',
+    path: 'contract-create/:id',
     component: ContractCreateComponent,
     data: { title: 'Create Contract' }    
   },
