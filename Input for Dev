@@ -1,1 +1,6 @@
 curl -i -X PUT localhost:8080/contacts/5ac3e34cba295410ac310523 -H "Content-Type: application/json" -d '{"name":"Peter Meyer"}'
+
+curl -i -X PUT localhost:8080/contracts/5ae71c4a5427bc0cc0265c6f -H "Content-Type: application/json" -d '{"type":"Parkplatz"}'
+
+
+curl -i -X POST -H "Content-Type: application/json" -d '{"type":"Basisbox","boxNr":"111","buildingInfo":"Gebaeude C","contractStartDate":"01-01-2018","contractEndDate":"31-12-2018"}' localhost:8080/contracts

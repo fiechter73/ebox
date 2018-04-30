@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>{{ contract.type }}</h1>
+  <dl class="list">
+    <dt>Boxnummer:</dt>
+    <dd>{{ contract.boxNr }}</dd>
+    <dt>Building Information:</dt>
+    <dd>{{ contract.buildingInfo }}</dd>
+    <dt>Miet Startdatum:</dt>
+    <dd>{{ contract.contractStartDate }}</dd>
+    <dt>Miet Enddatum:</dt>
+    <dd>{{ contract.contractEndDate }}</dd>
+  </dl>
+  <div class="row">
+    <div class="col-md-12">
+      <a [routerLink]="['/contract-edit', contract.id]" class="btn btn-success">EDIT</a>
+     <button class="btn btn-danger" type="button" (click)="deleteContract(contract.id)">DELETE</button>
+      <a [routerLink]="['/contract']" class="btn btn-danger">BACK</a>
+    </div>
+  </div>
+</div>
+    

@@ -9,6 +9,10 @@ import { ContactComponent } from './contact/contact.component';
 import { ContactDetailComponent } from './contact-detail/contact-detail.component';
 import { ContactCreateComponent } from './contact-create/contact-create.component';
 import { ContactEditComponent } from './contact-edit/contact-edit.component';
+import { ContractComponent } from './contract/contract.component';
+import { ContractDetailComponent } from './contract-detail/contract-detail.component';
+import { ContractCreateComponent } from './contract-create/contract-create.component';
+import { ContractEditComponent } from './contract-edit/contract-edit.component';
 
 const appRoutes: Routes = [
   {
@@ -34,7 +38,28 @@ const appRoutes: Routes = [
   { path: '',
     redirectTo: '/contact',
     pathMatch: 'full'
+  },
+  {
+    path: 'contract',
+    component: ContractComponent,
+    data: { title: 'Contract List' }
+  },
+  {
+    path: 'contract-detail/:id',
+    component: ContractDetailComponent,
+    data: { title: 'Contract Details' }
+  },
+  {
+    path: 'contract-create',
+    component: ContractCreateComponent,
+    data: { title: 'Create Contract' }    
+  },
+  {
+    path: 'contract-edit/:id',
+    component: ContractEditComponent,
+    data: { title: 'Edit Contract' }
   }
+
 ];
 
 @NgModule({
@@ -43,7 +68,11 @@ const appRoutes: Routes = [
     ContactComponent,
     ContactDetailComponent,
     ContactCreateComponent,
-    ContactEditComponent
+    ContactEditComponent,
+    ContractComponent,
+    ContractDetailComponent,
+    ContractCreateComponent,
+    ContractEditComponent
   ],
   imports: [
     BrowserModule,

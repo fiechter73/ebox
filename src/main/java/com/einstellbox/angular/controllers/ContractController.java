@@ -35,6 +35,8 @@ public class ContractController {
     @RequestMapping(method=RequestMethod.PUT, value="/contracts/{id}")
     public Contract update(@PathVariable String id, @RequestBody Contract contract) {
     	Contract c = contractRepository.findOne(id);
+    	if (contract.getType() != null)
+    		c.setType(contract.getType());
         if(contract.getBoxNr() != null)
         	c.setBoxNr(contract.getBoxNr());
         if(contract.getBuildingInfo() != null)

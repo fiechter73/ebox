@@ -10,7 +10,7 @@ public class Contract {
     @Id
     String id;
     String type;   // BasisBox, Parkplatz
-    String boxnr;
+    String boxNr;
     String buildingInfo;
     String contractStartDate;
     String contractEndDate;
@@ -18,9 +18,9 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(String type, String boxnr, String buildingInfo, String contractStartDate, String contractEndDate) {
+    public Contract(String type, String boxNr, String buildingInfo, String contractStartDate, String contractEndDate) {
     	this.type = type; 
-    	this.boxnr = boxnr;
+    	this.boxNr = boxNr;
         this.buildingInfo = buildingInfo;
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
@@ -44,11 +44,11 @@ public class Contract {
     }
     
     public String getBoxNr() {
-    	return boxnr;
+    	return boxNr;
     }
     
-    public void setBoxNr(String boxnr) {
-    	this.boxnr = boxnr; 
+    public void setBoxNr(String boxNr) {
+    	this.boxNr = boxNr; 
     }
     
     public String getBuildingInfo() {

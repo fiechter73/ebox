@@ -1,0 +1,29 @@
+<div class="container">
+  <h1>Contract List
+    <a [routerLink]="['/contract-create']" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </a>
+    <a [routerLink]="['/contact']" class="btn btn-danger">BACK</a>
+  </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Art des Mietobjekts:</th>
+        <th>Boxennummer:</th>
+        <th>Informationen zum Gebäude:</th>
+        <th>Miet Startsatum:</th>
+        <th>Miet Enddatum:</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let contract of contracts">
+            <td>{{ contract.type }}</td>
+            <td>{{ contract.boxNr }}</td>
+            <td>{{ contract.buildingInfo }}</td>
+            <td>{{ contract.contractStartDate }}</td>
+            <td>{{ contract.contractEndDate }}</td>
+            <td><a [routerLink]="['/contract-detail', contract.id]">Show Detail</a></td>
+        </tr>    
+      </tbody>
+  </table>
+</div>  
