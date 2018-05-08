@@ -468,7 +468,7 @@ module.exports = ""
 /***/ "./src/app/contract-create/contract-create.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <h1>Add new Contract</h1>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <form (ngSubmit)=\"saveContract()\" #contractForm=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"name\">Type:</label>\n          <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.type\" name=\"type\" required>\n        </div>\n        <div class=\"form-group\">\n            <label for=\"name\">Boxennummer:</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.boxNr\" name=\"boxNr\" required>\n          </div>\n          <div class=\"form-group\">\n              <label for=\"name\">Buildinginformation:</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.buildingInfo\" name=\"buildingInfo\" required>\n          </div>\n          <div class=\"form-group\">\n              <label for=\"name\">Mietstartdatum:</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.contractStartDate\" name=\"contractStartDate\" required>\n          </div>\n          <div class=\"form-group\">\n              <label for=\"name\">Mietenddatum:</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.contractEndDate\" name=\"contractEndDate\" required>\n          </div>\n          <div class=\"form-group\">\n              <button type=\"submit\" class=\"btn btn-success\" [disabled]=\"!contractForm.form.valid\">Save</button>\n              <a [routerLink]=\"['/contract']\" class=\"btn btn-danger\">BACK</a>\n          </div>\n      </form>\n    </div>\n  </div>"
+module.exports = "<div class=\"container\">\n  <h1>Add new Contract {{contact.id}}</h1>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <form (ngSubmit)=\"addContract(contact.id, contract)\" #contractForm=\"ngForm\">\n        <div class=\"form-group\">\n          <label for=\"name\">Type:</label>\n          <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.type\" name=\"type\" required>\n        </div>\n        <div class=\"form-group\">\n            <label for=\"name\">Boxennummer:</label>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.boxNr\" name=\"boxNr\" required>\n          </div>\n          <div class=\"form-group\">\n              <label for=\"name\">Buildinginformation:</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.buildingInfo\" name=\"buildingInfo\" required>\n          </div>\n          <div class=\"form-group\">\n              <label for=\"name\">Mietstartdatum:</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.contractStartDate\" name=\"contractStartDate\" required>\n          </div>\n          <div class=\"form-group\">\n              <label for=\"name\">Mietenddatum:</label>\n              <input type=\"text\" class=\"form-control\" [(ngModel)]=\"contract.contractEndDate\" name=\"contractEndDate\" required>\n          </div>\n          <div class=\"form-group\">\n              <button type=\"submit\" class=\"btn btn-success\" [disabled]=\"!contractForm.form.valid\">Save</button>\n              <a [routerLink]=\"['/contract']\" class=\"btn btn-danger\">BACK</a>\n          </div>\n      </form>\n    </div>\n  </div>"
 
 /***/ }),
 
@@ -493,12 +493,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ContractCreateComponent = /** @class */ (function () {
-    function ContractCreateComponent(http, router) {
-        this.http = http;
+    function ContractCreateComponent(router, route, http) {
         this.router = router;
+        this.route = route;
+        this.http = http;
+        this.contact = {};
         this.contract = {};
     }
     ContractCreateComponent.prototype.ngOnInit = function () {
+        this.getContactDetail(this.route.snapshot.params['id']);
     };
     ContractCreateComponent.prototype.saveContract = function () {
         var _this = this;
@@ -509,13 +512,29 @@ var ContractCreateComponent = /** @class */ (function () {
             console.log(err);
         });
     };
+    ContractCreateComponent.prototype.addContract = function (id, data) {
+        var _this = this;
+        this.http.post('/contracts/' + id, data)
+            .subscribe(function (res) {
+            id = res['id'];
+            _this.router.navigate(['/contract', id]);
+        }, function (err) {
+            console.log(err);
+        });
+    };
+    ContractCreateComponent.prototype.getContactDetail = function (id) {
+        var _this = this;
+        this.http.get('/contacts/' + id).subscribe(function (data) {
+            _this.contact = data;
+        });
+    };
     ContractCreateComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-contract-create',
             template: __webpack_require__("./src/app/contract-create/contract-create.component.html"),
             styles: [__webpack_require__("./src/app/contract-create/contract-create.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */], __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */], __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], ContractCreateComponent);
     return ContractCreateComponent;
 }());
@@ -652,7 +671,7 @@ var ContractEditComponent = /** @class */ (function () {
         var _this = this;
         this.http.put('/contracts/' + id, data)
             .subscribe(function (res) {
-            var id = res['id'];
+            id = res['id'];
             _this.router.navigate(['/contract-detail', id]);
         }, function (err) {
             console.log(err);

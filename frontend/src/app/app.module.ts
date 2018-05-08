@@ -57,7 +57,7 @@ const appRoutes: Routes = [
   {
     path: 'contract-create/:id',
     component: ContractCreateComponent,
-    data: { title: 'Create Contract' }    
+    data: { title: 'Create Contract' }
   },
   {
     path: 'contract-edit/:id',

@@ -11,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 export class ContractEditComponent implements OnInit {
 
   contract = {};
+  id;
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
@@ -19,15 +20,15 @@ export class ContractEditComponent implements OnInit {
   }
 
   getContract(id) {
-    this.http.get('/contracts/'+id).subscribe(data => {
+    this.http.get('/contracts/' + id).subscribe(data => {
       this.contract = data;
     });
   }
   updateContract(id, data) {
-    this.http.put('/contracts/'+id, data)  
+    this.http.put('/contracts/' + id, data)
       .subscribe(res => {
-        let id = res['id'];
-        this.router.navigate(['/contract-detail',id]);
+        id = res['id'];
+        this.router.navigate(['/contract-detail', id]);
       }, (err) => {
         console.log(err);
       }

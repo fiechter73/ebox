@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contract',
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 })
 export class ContractComponent implements OnInit {
 
-  contact = {} 
+  contact = {};
 
   contracts: any;
 
@@ -18,12 +18,12 @@ export class ContractComponent implements OnInit {
   ngOnInit() {
     this.getContactDetail(this.route.snapshot.params['id']);
     this.http.get('/contracts').subscribe(data => {
-      this.contracts = data; 
+      this.contracts = data;
     });
   }
 
   getContactDetail(id) {
-    this.http.get('/contacts/'+id).subscribe(data => {
+    this.http.get('/contacts/' + id).subscribe(data => {
       this.contact = data;
     });
   }

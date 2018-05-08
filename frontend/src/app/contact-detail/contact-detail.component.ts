@@ -18,13 +18,13 @@ export class ContactDetailComponent implements OnInit {
   }
 
   getContactDetail(id) {
-    this.http.get('/contacts/'+id).subscribe(data => {
+    this.http.get('/contacts/' + id).subscribe(data => {
       this.contact = data;
     });
   }
 
   deleteContact(id) {
-    this.http.delete('/contacts/'+id)
+    this.http.delete('/contacts/' + id)
       .subscribe(res => {
           this.router.navigate(['/contact']);
         }, (err) => {

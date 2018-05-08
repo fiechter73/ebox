@@ -1,8 +1,8 @@
 <div class="container">
-  <h1>Add new Contract</h1>
+  <h1>Add new Contract {{contact.id}}</h1>
   <div class="row">
     <div class="col-md-6">
-      <form (ngSubmit)="saveContract()" #contractForm="ngForm">
+      <form (ngSubmit)="addContract(contact.id, contract)" #contractForm="ngForm">
         <div class="form-group">
           <label for="name">Type:</label>
           <input type="text" class="form-control" [(ngModel)]="contract.type" name="type" required>

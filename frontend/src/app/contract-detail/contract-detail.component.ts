@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { ActivatedRoute, Router } from '@angular/router'
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-contract-detail',
@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 })
 export class ContractDetailComponent implements OnInit {
 
-  contract = {}
+  contract = {};
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
@@ -18,13 +18,13 @@ export class ContractDetailComponent implements OnInit {
   }
 
   getContractDetail(id) {
-    this.http.get('/contracts/'+id).subscribe(data => {
+    this.http.get('/contracts/' + id).subscribe(data => {
       this.contract = data;
     });
   }
 
   deleteContract(id) {
-    this.http.delete('/contracts/'+id)
+    this.http.delete('/contracts/' + id)
       .subscribe(res => {
         this.router.navigate(['/contract']);
       }, (err) => {
@@ -32,6 +32,4 @@ export class ContractDetailComponent implements OnInit {
       }
     );
   }
-
-
 }

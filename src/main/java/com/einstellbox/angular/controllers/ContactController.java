@@ -1,7 +1,13 @@
 package com.einstellbox.angular.controllers;
 
 import com.einstellbox.angular.models.Contact;
+import com.einstellbox.angular.models.Contract;
+
 import com.einstellbox.angular.repositories.ContactRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -50,12 +56,11 @@ public class ContactController {
         contactRepository.save(c);
         return contact;
     }
-
+    
     @RequestMapping(method=RequestMethod.DELETE, value="/contacts/{id}")
     public String delete(@PathVariable String id) {
         Contact contact = contactRepository.findOne(id);
         contactRepository.delete(contact);
-
         return "";
     }
 }

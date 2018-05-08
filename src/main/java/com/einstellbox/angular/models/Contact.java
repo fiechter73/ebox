@@ -1,5 +1,7 @@
 package com.einstellbox.angular.models;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -13,21 +15,31 @@ public class Contact {
     String city;
     String phone;
     String email;
+    List<Contract> contracts;
 
     
     public Contact() {
     }
 
-    public Contact(String name, String anrede, String address, String city, String phone, String email) {
+    public Contact(String name, String anrede, String address, String city, String phone, String email, List<Contract> contracts) {
     	this.anrede = anrede; 
     	this.name = name;
         this.address = address;
         this.city = city;
         this.phone = phone;
         this.email = email;
+        this.contracts = contracts;
     }
 
-    public String getId() {
+    public List<Contract> getContracts() {
+		return this.contracts;
+	}
+
+	public void setContracts(List <Contract> contracts) {
+		this.contracts = contracts;
+	}
+
+	public String getId() {
         return id;
     }
 
