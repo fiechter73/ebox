@@ -30,7 +30,7 @@ export class ContractCreateComponent implements OnInit {
   }
 
   addContract(id, data) {
-    this.http.post('/contracts/' + id, data)
+    this.http.post('/contacts/' + id, data)
       .subscribe(res => {
         id = res['id'];
         this.router.navigate(['/contract', id]);

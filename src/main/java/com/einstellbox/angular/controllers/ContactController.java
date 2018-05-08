@@ -4,6 +4,7 @@ import com.einstellbox.angular.models.Contact;
 import com.einstellbox.angular.models.Contract;
 
 import com.einstellbox.angular.repositories.ContactRepository;
+import com.einstellbox.angular.repositories.ContractRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ContactController {
+	
+	private List<Contract> list = new ArrayList<Contract>();
 
     @Autowired
     ContactRepository contactRepository;
+    
+    @Autowired
+    ContractRepository contractRepository;
 
     @RequestMapping(method=RequestMethod.GET, value="/contacts")
     public Iterable<Contact> contact() {
@@ -31,6 +37,20 @@ public class ContactController {
         contactRepository.save(contact);
 
         return contact;
+    }
+    
+    @RequestMapping(method=RequestMethod.POST, value="/contacts/{id}")
+    public Contact add(@PathVariable String id, @RequestBody Contract contract) {
+    	Contact c =contactRepository.findOne(id);
+    	//System.out.println(c.getEmail());
+    	if (c.getContracts() != null && c.getContracts().size()!= 0) {
+    		list = c.getContracts();
+    	}
+    		contractRepository.save(contract);
+    		list.add(contract);
+    		c.setContracts(list);
+    		contactRepository.save(c);
+    	return c;
     }
 
     @RequestMapping(method=RequestMethod.GET, value="/contacts/{id}")

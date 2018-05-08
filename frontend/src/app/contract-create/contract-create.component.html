@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Add new Contract {{contact.id}}</h1>
+  <h1>Add new Contract {{contact.name}}</h1>
   <div class="row">
     <div class="col-md-6">
       <form (ngSubmit)="addContract(contact.id, contract)" #contractForm="ngForm">
@@ -25,7 +25,7 @@
           </div>
           <div class="form-group">
               <button type="submit" class="btn btn-success" [disabled]="!contractForm.form.valid">Save</button>
-              <a [routerLink]="['/contract']" class="btn btn-danger">BACK</a>
+              <a [routerLink]="['/contract', contact.id]" class="btn btn-danger">BACK</a>
           </div>
       </form>
     </div>
