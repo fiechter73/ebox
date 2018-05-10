@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ContactDetailComponent implements OnInit {
 
-  contact = {};
+  contact: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 

@@ -55,7 +55,10 @@ public class ContactController {
 
     @RequestMapping(method=RequestMethod.GET, value="/contacts/{id}")
     public Contact show(@PathVariable String id) {
-        return contactRepository.findOne(id);
+        Contact c = contactRepository.findOne(id);
+    	return c;
+        		
+        		
     }
 
     @RequestMapping(method=RequestMethod.PUT, value="/contacts/{id}")

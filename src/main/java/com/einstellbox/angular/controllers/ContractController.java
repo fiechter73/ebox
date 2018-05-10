@@ -1,12 +1,9 @@
 package com.einstellbox.angular.controllers;
 
-import com.einstellbox.angular.models.Contact;
+
 import com.einstellbox.angular.models.Contract;
-import com.einstellbox.angular.repositories.ContactRepository;
 import com.einstellbox.angular.repositories.ContractRepository;
 
-//import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContractController {
 	
 	
-//	private List<Contract> list = new ArrayList<Contract>();
 
     @Autowired
     ContractRepository contractRepository;
@@ -29,21 +25,7 @@ public class ContractController {
     public Iterable<Contract> contract() {
         return contractRepository.findAll();
     }
-    
-//    @RequestMapping(method=RequestMethod.POST, value="/contracts/{id}")
-//    public Contact add(@PathVariable String id, @RequestBody Contract contract) {
-//    	Contact c =contactRespository.findOne(id);
-//    	//System.out.println(c.getEmail());
-//    	if (c.getContracts() != null && c.getContracts().size()!= 0) {
-//    		list = c.getContracts();
-//    	}
-//    		contractRepository.save(contract);
-//    		list.add(contract);
-//    		c.setContracts(list);
-//    		contactRespository.save(c);
-//    	return c;
-//    }
-      
+          
     @RequestMapping(method=RequestMethod.POST, value="/contracts")
     public Contract save(@RequestBody Contract contract) {
 	   contractRepository.save(contract);
@@ -58,8 +40,8 @@ public class ContractController {
     @RequestMapping(method=RequestMethod.PUT, value="/contracts/{id}")
     public Contract update(@PathVariable String id, @RequestBody Contract contract) {
     	Contract c = contractRepository.findOne(id);
-    	if (contract.getType() != null)
-    		c.setType(contract.getType());
+    	if (contract.getBoxType() != null)
+    		c.setBoxType(contract.getBoxType());
         if(contract.getBoxNr() != null)
         	c.setBoxNr(contract.getBoxNr());
         if(contract.getBuildingInfo() != null)

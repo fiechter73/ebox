@@ -9,17 +9,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ContractComponent implements OnInit {
 
-  contact = {};
+  contact: {};
 
-  contracts: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
     this.getContactDetail(this.route.snapshot.params['id']);
-    this.http.get('/contracts/' + this.route.snapshot.params['id']).subscribe(data => {
-      this.contracts = data;
-    });
+    console.log(this.route.snapshot.params['id']);
   }
 
   getContactDetail(id) {

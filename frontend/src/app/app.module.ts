@@ -50,7 +50,7 @@ const appRoutes: Routes = [
     data: { title: 'Contract List' }
   },
   {
-    path: 'contract-detail/:id',
+    path: 'contract-detail',
     component: ContractDetailComponent,
     data: { title: 'Contract Details' }
   },

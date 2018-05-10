@@ -9,24 +9,31 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ContractDetailComponent implements OnInit {
 
-  contract = {};
+  idContract: string;
+  contract: any;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
-    this.getContractDetail(this.route.snapshot.params['id']);
+    // snapshot.params['idContract']
+    this.getContractDetail(this.route.snapshot.queryParams['idContract']);
+    this.idContract = this.route.snapshot.queryParams['idContact'];
+    console.log(this.idContract);
+    console.log(this.contract);
+
   }
 
-  getContractDetail(id) {
-    this.http.get('/contracts/' + id).subscribe(data => {
+  getContractDetail(idContract) {
+    this.http.get('/contracts/' + idContract).subscribe(data => {
       this.contract = data;
+      console.log(data.toString);
     });
   }
 
-  deleteContract(id) {
-    this.http.delete('/contracts/' + id)
+  deleteContract(idContract) {
+    this.http.delete('/contracts/' + idContract)
       .subscribe(res => {
-        this.router.navigate(['/contract']);
+        this.router.navigate(['/contract', this.idContract ]);
       }, (err) => {
       console.log(err);
       }

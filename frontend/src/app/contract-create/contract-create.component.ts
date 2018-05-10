@@ -9,8 +9,8 @@ import { HttpClient} from '@angular/common/http';
 })
 export class ContractCreateComponent implements OnInit {
 
-  contact = {};
-  contract = {};
+  contact: {};
+  contract: {};
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
