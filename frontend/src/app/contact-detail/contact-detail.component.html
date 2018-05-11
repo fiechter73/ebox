@@ -12,8 +12,8 @@
   </dl>
  <div class="row">
   <div class="col-md-12">
-    <a [routerLink]="['/contact-edit', contact.id]" class="btn btn-success">EDIT</a>
-    <button class="btn btn-danger" type="button" (click)="deleteContact(contact.id)">DELETE</button>
+    <a [routerLink]="['/contact-edit']" [queryParams]=" { idContact: idContact }" class="btn btn-success">EDIT</a>
+    <button class="btn btn-danger" type="button" (click)="deleteContact(idContact)">DELETE</button>
     <a [routerLink]="['/contact']" class="btn btn-danger">BACK</a>
   </div>
 </div>

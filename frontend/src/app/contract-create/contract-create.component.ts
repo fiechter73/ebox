@@ -9,31 +9,25 @@ import { HttpClient} from '@angular/common/http';
 })
 export class ContractCreateComponent implements OnInit {
 
-  contact: {};
-  contract: {};
+  contact = {};
+  contract = {};
+  idContract: string;
+  idContact: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
 
   ngOnInit() {
-    this.getContactDetail(this.route.snapshot.params['id']);
-  }
-
-  saveContract() {
-    this.http.post('/contracts', this.contract)
-      .subscribe(res => {
-        this.router.navigate(['/contract', res]);
-      }, (err) => {
-        console.log(err);
-      }
-    );
+    this.idContract = this.route.snapshot.queryParams['idContract']
+    this.idContact = this.route.snapshot.queryParams['idContact'];
+    this.getContactDetail(this.idContact);
   }
 
   addContract(id, data) {
     this.http.post('/contacts/' + id, data)
       .subscribe(res => {
         id = res['id'];
-        this.router.navigate(['/contract', id]);
+        this.router.navigate(['/contract'], {queryParams: {idContract: this.idContract, idContact: this.idContact}});
       }, (err) => {
         console.log(err);
       }

@@ -11,24 +11,31 @@ import { HttpClient } from '@angular/common/http';
 export class ContractEditComponent implements OnInit {
 
   contract = {};
-  id;
+  idContact: string;
+  idContract: string;
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getContract(this.route.snapshot.params['id']);
+    this.idContract = this.route.snapshot.queryParams['idContract'];
+    this.idContact = this.route.snapshot.queryParams['idContact'];
+    this.getContract(this.idContact, this.idContract );
+    console.log(this.idContact);
+    console.log(this.idContract);
   }
 
-  getContract(id) {
-    this.http.get('/contracts/' + id).subscribe(data => {
+  getContract(idContact, idContract ) {
+    this.http.get('/contractofcontacts/' + idContact + '/' + idContract ).subscribe(data => {
       this.contract = data;
+      console.log(data.toString);
     });
   }
-  updateContract(id, data) {
-    this.http.put('/contracts/' + id, data)
+
+  updateContract(idcontact, data) {
+    this.http.put('/updatecontractsofcontact/' + idcontact, data)
       .subscribe(res => {
-        id = res['id'];
-        this.router.navigate(['/contract-detail', id]);
+        idcontact = res['id'];
+        this.router.navigate(['/contract'], {queryParams: {idContract: this.idContract, idContact: this.idContact}});
       }, (err) => {
         console.log(err);
       }

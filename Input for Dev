@@ -4,3 +4,17 @@ curl -i -X PUT localhost:8080/contracts/5ae71c4a5427bc0cc0265c6f -H "Content-Typ
 
 
 curl -i -X POST -H "Content-Type: application/json" -d '{"type":"Basisbox","boxNr":"111","buildingInfo":"Gebaeude C","contractStartDate":"01-01-2018","contractEndDate":"31-12-2018"}' localhost:8080/contracts
+
+
+curl -i -X GET  localhost:8080/contractofcontacts/5af45411e2d9393b9865995d/5af45529e2d939387403aea9 -H "Content-Type: application/json" -d '{"type":"Parkplatz"}'
+
+
+
+curl -i -H "Accept: application/json" localhost:8080/contractofcontacts/5af45411e2d9393b9865995d/5af45529e2d939387403aea9
+
+curl -i -H "Accept: application/json" localhost:8080/contractofcontacts/5af45411e2d9393b9865995d/5af45529e2d939387403aea9
+
+
+curl -i -X PUT localhost:8080/contractofcontactsdel/5af45411e2d9393b9865995d/5af47869e2d93955e43c797d
+
+curl -i -X PUT localhost:8080/contractofcontactsdel/5af45411e2d9393b9865995d/5af4588ae2d9391e2458bb73

@@ -2,7 +2,7 @@
   <h1>Edit Contact</h1>
   <div class="row">
     <div class="col-md-6">
-      <form (ngSubmit)="updateContact(contact.id,contact)" #contactForm="ngForm">
+      <form (ngSubmit)="updateContact(idContact, contact)" #contactForm="ngForm">
         <div class="form-group">
             <label for="anrede">Anrede</label>
             <input type="text" class="form-control" [(ngModel)]="contact.anrede" name="anrede" required>

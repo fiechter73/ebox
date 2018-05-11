@@ -21,6 +21,11 @@ const appRoutes: Routes = [
     data: { title: 'Contact List' }
   },
   {
+    path: 'contact-detail',
+    component: ContactDetailComponent,
+    data: { title: 'Contact Details' }
+  },
+  {
     path: 'contact-detail/:id',
     component: ContactDetailComponent,
     data: { title: 'Contact Details' }
@@ -29,6 +34,11 @@ const appRoutes: Routes = [
     path: 'contact-create',
     component: ContactCreateComponent,
     data: { title: 'Create Contact' }
+  },
+  {
+    path: 'contact-edit',
+    component: ContactEditComponent,
+    data: { title: 'Edit Contact' }
   },
   {
     path: 'contact-edit/:id',
@@ -50,9 +60,19 @@ const appRoutes: Routes = [
     data: { title: 'Contract List' }
   },
   {
+    path: 'contract-detail/:id',
+    component: ContractDetailComponent,
+    data: { title: 'Contract Details' }
+  },
+  {
     path: 'contract-detail',
     component: ContractDetailComponent,
     data: { title: 'Contract Details' }
+  },
+  {
+    path: 'contract-edit',
+    component: ContractEditComponent,
+    data: { title: 'Edit Contract' }
   },
   {
     path: 'contract-create/:id',
@@ -60,9 +80,9 @@ const appRoutes: Routes = [
     data: { title: 'Create Contract' }
   },
   {
-    path: 'contract-edit/:id',
-    component: ContractEditComponent,
-    data: { title: 'Edit Contract' }
+    path: 'contract-create',
+    component: ContractCreateComponent,
+    data: { title: 'Create Contract' }
   }
 
 ];

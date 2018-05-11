@@ -9,12 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ContactDetailComponent implements OnInit {
 
-  contact: any;
+  contact = {};
+  idContact: string;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
-    this.getContactDetail(this.route.snapshot.params['id']);
+   //  this.getContactDetail(this.route.snapshot.params['id']);
+    this.idContact = this.route.snapshot.queryParams['idContact'];
+    this.getContactDetail(this.idContact);
+
   }
 
   getContactDetail(id) {

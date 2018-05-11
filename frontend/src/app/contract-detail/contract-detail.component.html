@@ -2,7 +2,7 @@
   <h1>Detailansicht:</h1>
   <dl class="list">
     <dt>Boxentype:</dt>
-    <dd>{{ contract.boxType }}</dd>      
+    <dd>{{ contract.type }}</dd>      
     <dt>Boxnummer:</dt>
     <dd>{{ contract.boxNr }}</dd>
     <dt>Building Information:</dt>
@@ -14,10 +14,9 @@
   </dl>
   <div class="row">
     <div class="col-md-12">
-      <a [routerLink]="['/contract-edit']" class="btn btn-success">EDIT</a>
-     <button class="btn btn-danger" type="button" (click)="deleteContract(contract.id)">DELETE</button>
-      <a [routerLink]="['/contract', idContract]" class="btn btn-danger">BACK</a>
+      <a [routerLink]="['/contract-edit']" [queryParams]=" { idContract: contract.id, idContact: idContact }" class="btn btn-success">EDIT</a>
+      <button class="btn btn-danger" type="button" (click)="deleteContract(idContact, contract.id, contract)">DELETE</button>
+      <a [routerLink]="['/contract']" [queryParams]=" { idContract: contract.id, idContact: idContact }" class="btn btn-danger">BACK</a>
     </div>
   </div>
 </div>
-    

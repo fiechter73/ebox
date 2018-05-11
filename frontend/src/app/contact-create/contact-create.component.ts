@@ -9,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContactCreateComponent implements OnInit {
 
-  contact = {};
+  contact = {}; // Save von Daten!
 
   constructor(private http: HttpClient, private router: Router) { }
 

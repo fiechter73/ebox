@@ -23,10 +23,8 @@
         <td>{{ contact.city }}</td>
         <td>{{ contact.phone }}</td>
         <td>{{ contact.email }}</td>
-        <td><a [routerLink]="['/contact-detail', contact.id]">Show Detail</a></td>
-        <td><a [routerLink]="['/contract', contact.id]" class="btn btn-primary btn-sm">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-              Contract List</a></td>
+        <td><a [routerLink]="['/contact-detail']"  [queryParams]=" { idContact: contact.id }" >Show Detail</a></td>
+        <td><a [routerLink]="['/contract']" [queryParams]=" { idContact: contact.id } " >Show Contracts</a></td>
       </tr>
     </tbody>
   </table>

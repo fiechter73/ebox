@@ -9,16 +9,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContactEditComponent implements OnInit {
 
-  contact: any;
+  contact = {};
+  idContact: string;
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getContact(this.route.snapshot.params['id']);
+    this.idContact = this.route.snapshot.queryParams['idContact'];
+    this.getContact(this.idContact);
   }
 
-  getContact(id) {
-    this.http.get('/contacts/' + id).subscribe(data => {
+  getContact(idContact) {
+    this.http.get('/contacts/' + idContact).subscribe(data => {
       this.contact = data;
     });
   }
@@ -28,7 +30,7 @@ export class ContactEditComponent implements OnInit {
       .subscribe(res => {
           // tslint:disable-next-line:no-shadowed-variable
           const id = res['id'];
-          this.router.navigate(['/contact-detail', id]);
+          this.router.navigate(['/contact-detail'], {queryParams: {idContact: id}});
         }, (err) => {
           console.log(err);
         }
