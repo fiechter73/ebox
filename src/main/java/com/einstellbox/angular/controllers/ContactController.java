@@ -65,6 +65,7 @@ public class ContactController {
     public Contract showContract(@PathVariable String idcontact, @PathVariable String idcontract ) {
         Contact c = contactRepository.findOne(idcontact);
         List<Contract> list = c.getContracts();
+        System.out.println("Contact: "+ idcontact + "Contract:"+ idcontract);
         Contract con = null;
         Iterator<Contract> iter = list.iterator();
     	while (iter.hasNext() ) {    		
