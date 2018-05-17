@@ -25,7 +25,7 @@
           </div>
           <div class="form-group">
               <button type="submit" class="btn btn-success" [disabled]="!contractForm.form.valid">Update</button>
-              <a [routerLink]="['/contract']" class="btn btn-danger">BACK</a>
+              <a [routerLink]="['/contract']" [queryParams]=" { idContract: contract.id, idContact: idContact }" class="btn btn-danger">BACK</a>
           </div>     
         </form>
       </div>
