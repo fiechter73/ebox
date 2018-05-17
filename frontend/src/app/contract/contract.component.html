@@ -13,6 +13,8 @@
         <th>Informationen zum Gebäude:</th>
         <th>Startmietdatum:</th>
         <th>Endmietdatum:</th>
+        <th>Details:</th>
+        <th>Produkts:</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +25,7 @@
         <td>{{ contract.contractStartDate }}</td>
         <td>{{ contract.contractEndDate }}</td>
         <td><a [routerLink]="['/contract-detail']" [queryParams]=" { idContract: contract.id, idContact: contact.id } " >Show Detail</a></td>
+        <td><a [routerLink]="['/contract-detail']" [queryParams]=" { idContract: contract.id, idContact: contact.id } " >Add Product</a></td>
     </tr>
       </tbody>
   </table>
