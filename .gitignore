@@ -25,7 +25,5 @@ dist/
 nbdist/
 .nb-gradle/
 /bin/
-/src/
 /node_modules/
 /hs_err_pid10984.log
-/.gitignore
