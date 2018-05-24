@@ -15,6 +15,11 @@ import { ContractCreateComponent } from './contract-create/contract-create.compo
 import { ContractEditComponent } from './contract-edit/contract-edit.component';
 import { ProductComponent } from './product/product.component';
 import { ProductCreateComponent } from './product-create/product-create.component';
+import { ProductsListComponent } from './products-list/products-list.component';
+import { ProductRowComponent } from './product-row/product-row.component';
+import { ProductImageComponent } from './product-image/product-image.component';
+import { PriceDisplayComponent } from './price-display/price-display.component';
+import { ProductDepartmentComponent } from './product-department/product-department.component';
 
 const appRoutes: Routes = [
   {
@@ -111,7 +116,12 @@ const appRoutes: Routes = [
     ContractCreateComponent,
     ContractEditComponent,
     ProductComponent,
-    ProductCreateComponent
+    ProductCreateComponent,
+    ProductsListComponent,
+    ProductRowComponent,
+    ProductImageComponent,
+    PriceDisplayComponent,
+    ProductDepartmentComponent
   ],
   imports: [
     BrowserModule,
