@@ -13,6 +13,8 @@ import { ContractComponent } from './contract/contract.component';
 import { ContractDetailComponent } from './contract-detail/contract-detail.component';
 import { ContractCreateComponent } from './contract-create/contract-create.component';
 import { ContractEditComponent } from './contract-edit/contract-edit.component';
+import { ProductComponent } from './product/product.component';
+import { ProductCreateComponent } from './product-create/product-create.component';
 
 const appRoutes: Routes = [
   {
@@ -83,7 +85,17 @@ const appRoutes: Routes = [
     path: 'contract-create',
     component: ContractCreateComponent,
     data: { title: 'Create Contract' }
-  }
+  },
+  {
+    path: 'product',
+    component: ProductComponent,
+    data: { title: 'Product List' }
+  },
+  {
+    path: 'product-create',
+    component: ProductCreateComponent,
+    data: { title: 'Create Product' }
+  },
 
 ];
 
@@ -97,7 +109,9 @@ const appRoutes: Routes = [
     ContractComponent,
     ContractDetailComponent,
     ContractCreateComponent,
-    ContractEditComponent
+    ContractEditComponent,
+    ProductComponent,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule,
