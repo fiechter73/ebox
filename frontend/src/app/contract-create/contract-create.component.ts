@@ -18,7 +18,7 @@ export class ContractCreateComponent implements OnInit {
 
 
   ngOnInit() {
-    this.idContract = this.route.snapshot.queryParams['idContract']
+    this.idContract = this.route.snapshot.queryParams['idContract'];
     this.idContact = this.route.snapshot.queryParams['idContact'];
     this.getContactDetail(this.idContact);
   }
