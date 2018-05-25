@@ -18,3 +18,19 @@ curl -i -H "Accept: application/json" localhost:8080/contractofcontacts/5af45411
 curl -i -X PUT localhost:8080/contractofcontactsdel/5af45411e2d9393b9865995d/5af47869e2d93955e43c797d
 
 curl -i -X PUT localhost:8080/contractofcontactsdel/5af45411e2d9393b9865995d/5af4588ae2d9391e2458bb73
+
+
+
+
+
+    <tbody>
+      <tr *ngFor="let contact of contacts">
+        <td>{{ contact.anrede }}</td>
+        <td>{{ contact.name }}</td>
+        <td>{{ contact.city }}</td>
+        <td>{{ contact.phone }}</td>
+        <td>{{ contact.email }}</td>
+        <td><a [routerLink]="['/contact-detail']"  [queryParams]=" { idContact: contact.id }" >Show Detail</a></td>
+        <td><a [routerLink]="['/contract']" [queryParams]=" { idContact: contact.id } " >Show Contracts</a></td>
+      </tr>
+    </tbody>

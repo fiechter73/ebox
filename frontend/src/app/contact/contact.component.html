@@ -1,31 +1,53 @@
 <div class="container">
   <h1>
-    <a [routerLink]="['/contact-create']" class="btn btn-default btn-lg">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-      Contact List</a>
+    <div class="buttion-row">
+      <a mat-raised-button color="accent" [routerLink] = "['/contact-create']" >Contract List </a>
+    </div>
   </h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Anrede</th>
-        <th>Name</th>
-        <th>City</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Contact Details</th>
-        <th>Contracts Details</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let contact of contacts">
-        <td>{{ contact.anrede }}</td>
-        <td>{{ contact.name }}</td>
-        <td>{{ contact.city }}</td>
-        <td>{{ contact.phone }}</td>
-        <td>{{ contact.email }}</td>
-        <td><a [routerLink]="['/contact-detail']"  [queryParams]=" { idContact: contact.id }" >Show Detail</a></td>
-        <td><a [routerLink]="['/contract']" [queryParams]=" { idContact: contact.id } " >Show Contracts</a></td>
-      </tr>
-    </tbody>
+  <table mat-table [dataSource] = "dataSource" class="mat-elevation-z8">
+  <!-- Position Column -->
+  <ng-container matColumnDef ="anrede">
+      <th mat-header-cell *matHeaderCellDef> Anrede </th>
+      <td mat-cell *matCellDef ="let element"> {{element.anrede}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef ="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef ="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="city">
+      <th mat-header-cell *matHeaderCellDef> City </th>
+      <td mat-cell *matCellDef ="let element"> {{element.city}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef ="phone">
+      <th mat-header-cell *matHeaderCellDef> Phone </th>
+      <td mat-cell *matCellDef ="let element"> {{element.phone}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef ="email">
+      <th mat-header-cell *matHeaderCellDef> Email </th>
+      <td mat-cell *matCellDef ="let element"> {{element.email}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef ="contactdetails">
+      <th mat-header-cell *matHeaderCellDef> Contact Details</th>
+      <td mat-cell *matCellDef ="let element"> <a [routerLink] = "['/contact-detail']" [queryParams] =" { idContact: element.contactdetailsid }" >Show Detail</a> </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+      <ng-container matColumnDef ="contractdetails">
+         <th mat-header-cell *matHeaderCellDef> Contracts Details </th>
+         <td mat-cell *matCellDef ="let element"> <a [routerLink]="['/contract']" [queryParams] =" { idContact: element.contractdetailsid } " >Show Contracts</a> </td>
+      </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef ="displayedColumns"></tr>
+    <tr mat-row *matRowDef ="let row; columns: displayedColumns;"></tr>
   </table>
 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../product.model';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-product-create',
