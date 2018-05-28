@@ -9,6 +9,14 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContactCreateComponent implements OnInit {
 
+  selectedValue:  string;
+
+  anreden = [
+    {value: 'Herr', viewValue: 'Herr'},
+    {value: 'Frau', viewValue: 'Frau'},
+    {value: 'Herr & Frau', viewValue: 'Herr & Frau'}
+  ];
+
   contact = {}; // Save von Daten!
 
   constructor(private http: HttpClient, private router: Router) { }

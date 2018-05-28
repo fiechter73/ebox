@@ -8,26 +8,24 @@ public class Product {
 	
 	@Id
 	private String id;
-	private String productName;
+	private String name;
 	private String[] description;
 	private String imageUrl;
-	private Number price;
 	private Number quanitity;
+	private Number price;
 	
 	
     public Product() {
     }
 
-    public Product(String productName, String[] description, String imageUrl, Number quantity, Number price) {
-    	this.productName = productName; 
+    public Product(String name, String[] description, String imageUrl, Number quantity, Number price) {
+    	this.name = name; 
     	this.description = description;
         this.imageUrl = imageUrl;
         this.quanitity = quantity;
         this.price = price;
     }
 	
-	
-    
     
 	public Number getQuanitity() {
 		return quanitity;
@@ -43,11 +41,11 @@ public class Product {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getProductName() {
-		return productName;
+	public String getName() {
+		return name;
 	}
-	public void setProductName(String productName) {
-		this.productName = productName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String[] getDescription() {
 		return description;

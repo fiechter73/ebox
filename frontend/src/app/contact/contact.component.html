@@ -1,10 +1,10 @@
 <div class="container">
   <h1>
     <div class="buttion-row">
-      <a mat-raised-button color="accent" [routerLink] = "['/contact-create']" >Contract List </a>
+      <a mat-raised-button color="accent" [routerLink] = "['/contact-create']" >Neuer Kontakt hinzufügen</a>
     </div>
   </h1>
-  <table mat-table [dataSource] = "dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource] = "contact" class="mat-elevation-z8">
   <!-- Position Column -->
   <ng-container matColumnDef ="anrede">
       <th mat-header-cell *matHeaderCellDef> Anrede </th>

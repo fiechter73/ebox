@@ -1,6 +1,8 @@
 package com.einstellbox.angular.models;
 
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,6 +16,7 @@ public class Contract {
     String buildingInfo;
     String contractStartDate;
     String contractEndDate;
+    List<Product> products;
 
     
     public Contract() {
@@ -26,7 +29,24 @@ public class Contract {
         this.contractStartDate = contractStartDate;
         this.contractEndDate = contractEndDate;
     }
+    
+    public Contract(String type, String boxNr, String buildingInfo, String contractStartDate, String contractEndDate, List<Product> products) {
+    	this.type = type; 
+    	this.boxNr = boxNr;
+        this.buildingInfo = buildingInfo;
+        this.contractStartDate = contractStartDate;
+        this.contractEndDate = contractEndDate;
+        this.products = products;
+    } 
+    
 	
+    public List<Product> getProdcuts() {
+		return this.products;
+	}
+
+	public void setProducts(List <Product> products) {
+		this.products = products;
+	}
     
     public String getId() {
         return id;

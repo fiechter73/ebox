@@ -11,14 +11,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ContactComponent implements OnInit {
 
   displayedColumns = ['anrede', 'name', 'city', 'phone', 'email', 'contactdetails', 'contractdetails'];
-  dataSource: any;
+  contact: any;
   dataSource = ELEMENT_DATA;
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
     this.http.get('/contacts').subscribe(data => {
-    this.dataSource = data;
+      this.contact = data;
+      console.log(this.contact);
     });
   }
 }
