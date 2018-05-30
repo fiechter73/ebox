@@ -9,6 +9,13 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ContactEditComponent implements OnInit {
 
+  anreden = [
+    {value: 'Herr', viewValue: 'Herr'},
+    {value: 'Frau', viewValue: 'Frau'},
+    {value: 'Herr & Frau', viewValue: 'Herr & Frau'}
+  ];
+
+
   contact = {};
   idContact: string;
 
@@ -20,7 +27,7 @@ export class ContactEditComponent implements OnInit {
   }
 
   getContact(idContact) {
-    this.http.get('/contacts/' + idContact).subscribe(data => {
+    this.http.get('/api/contacts/' + idContact).subscribe(data => {
       this.contact = data;
     });
   }

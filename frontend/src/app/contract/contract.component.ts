@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ContractComponent implements OnInit {
 
+  displayedColumns = ['type', 'boxNr', 'buildingInfo', 'contractStartDate', 'contractEndDate', 'contractDetails', 'addProducts'];
   contact = {};
   idContract: string;
   idContact: string;
