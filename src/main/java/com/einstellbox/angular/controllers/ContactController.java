@@ -28,19 +28,19 @@ public class ContactController {
     @Autowired
     ContractRepository contractRepository;
 
-    @RequestMapping(method=RequestMethod.GET, value="/contacts")
+    @RequestMapping(method=RequestMethod.GET, value="api/contacts")
     public Iterable<Contact> contact() {
         return contactRepository.findAll();
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/contacts")
+    @RequestMapping(method=RequestMethod.POST, value="api/contacts")
     public Contact save(@RequestBody Contact contact) {
         contactRepository.save(contact);
 
         return contact;
     }
     
-    @RequestMapping(method=RequestMethod.POST, value="/contacts/{id}")
+    @RequestMapping(method=RequestMethod.POST, value="api/contacts/{id}")
     public Contact add(@PathVariable String id, @RequestBody Contract contract) {
     	Contact c =contactRepository.findOne(id);
     	//System.out.println(c.getEmail());
@@ -54,14 +54,14 @@ public class ContactController {
     	return c;
     }
 
-    @RequestMapping(method=RequestMethod.GET, value="/contacts/{id}")
+    @RequestMapping(method=RequestMethod.GET, value="api/contacts/{id}")
     public Contact show(@PathVariable String id) {
         Contact c = contactRepository.findOne(id);
         System.out.println(c.getName());
     	return c;     		
     }
 
-    @RequestMapping(method=RequestMethod.GET, value="/contractofcontacts/{idcontact}/{idcontract}")
+    @RequestMapping(method=RequestMethod.GET, value="api/contractofcontacts/{idcontact}/{idcontract}")
     public Contract showContract(@PathVariable String idcontact, @PathVariable String idcontract ) {
         Contact c = contactRepository.findOne(idcontact);
         List<Contract> list = c.getContracts();
@@ -77,7 +77,7 @@ public class ContactController {
     	return con;
     }
 
-    @RequestMapping(method=RequestMethod.PUT, value="/contacts/{id}")
+    @RequestMapping(method=RequestMethod.PUT, value="api/contacts/{id}")
     public Contact update(@PathVariable String id, @RequestBody Contact contact) {
         Contact c = contactRepository.findOne(id);
         if(contact.getAnrede() != null)
@@ -97,7 +97,7 @@ public class ContactController {
     }
     
     
-  @RequestMapping(method=RequestMethod.PUT, value="/updatecontractsofcontact/{idcontact}")
+  @RequestMapping(method=RequestMethod.PUT, value="api/updatecontractsofcontact/{idcontact}")
   public Contract updateContract(@PathVariable String idcontact, @RequestBody Contract contract) {
   	  System.out.println(idcontact);
 	  Contact c = contactRepository.findOne(idcontact);
@@ -124,14 +124,14 @@ public class ContactController {
   		return contract;	
   		}	  
 	      
-    @RequestMapping(method=RequestMethod.DELETE, value="/contacts/{id}")
+    @RequestMapping(method=RequestMethod.DELETE, value="api/contacts/{id}")
     public String delete(@PathVariable String id) {
         Contact contact = contactRepository.findOne(id);
         contactRepository.delete(contact);
         return "";
     }
     
-    @RequestMapping(method=RequestMethod.PUT, value="/contractofcontactsdel/{idcontact}/{idcontract}")
+    @RequestMapping(method=RequestMethod.PUT, value="api/contractofcontactsdel/{idcontact}/{idcontract}")
     public String delContract(@PathVariable String idcontact, @PathVariable String idcontract, @RequestBody Contact contact ) {
     	System.out.println(idcontact);
     	System.out.println(idcontract);

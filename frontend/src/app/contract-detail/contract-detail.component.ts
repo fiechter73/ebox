@@ -22,7 +22,7 @@ export class ContractDetailComponent implements OnInit {
   }
 
   getContractDetail(idContact, idContract ) {
-    this.http.get('/contractofcontacts/' + idContact + '/' + idContract ).subscribe(data => {
+    this.http.get('/api/contractofcontacts/' + idContact + '/' + idContract ).subscribe(data => {
       this.contract = data;
       console.log(data.toString);
     });

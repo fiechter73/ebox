@@ -25,14 +25,14 @@ export class ContractEditComponent implements OnInit {
   }
 
   getContract(idContact, idContract ) {
-    this.http.get('/contractofcontacts/' + idContact + '/' + idContract ).subscribe(data => {
+    this.http.get('/api/contractofcontacts/' + idContact + '/' + idContract ).subscribe(data => {
       this.contract = data;
       console.log(data.toString);
     });
   }
 
   updateContract(idcontact, data) {
-    this.http.put('/updatecontractsofcontact/' + idcontact, data)
+    this.http.put('/api/updatecontractsofcontact/' + idcontact, data)
       .subscribe(res => {
         idcontact = res['id'];
         this.router.navigate(['/contract'], {queryParams: {idContract: this.idContract, idContact: this.idContact}});

@@ -9,8 +9,6 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContactCreateComponent implements OnInit {
 
-  selectedValue:  string;
-
   anreden = [
     {value: 'Herr', viewValue: 'Herr'},
     {value: 'Frau', viewValue: 'Frau'},
@@ -25,7 +23,7 @@ export class ContactCreateComponent implements OnInit {
   }
 
   saveContact() {
-    this.http.post('/contacts', this.contact)
+    this.http.post('/api/contacts', this.contact)
       .subscribe(res => {
          this.router.navigate(['/contact']);
         }, (err) => {

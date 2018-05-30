@@ -25,7 +25,7 @@ export class ProductComponent implements OnInit {
   }
 
   getProductDetails(idContact, idContract) {
-    this.http.get('/products/' + idContact + '/' + idContract).subscribe(data => {
+    this.http.get('/api/products/' + idContact + '/' + idContract).subscribe(data => {
       this.contract = data;
     });
   }

@@ -15,19 +15,18 @@ export class ContactDetailComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
-   //  this.getContactDetail(this.route.snapshot.params['id']);
     this.idContact = this.route.snapshot.queryParams['idContact'];
     this.getContactDetail(this.idContact);
   }
 
   getContactDetail(id) {
-    this.http.get('/contacts/' + id).subscribe(data => {
+    this.http.get('/api/contacts/' + id).subscribe(data => {
       this.contact = data;
     });
   }
 
   deleteContact(id) {
-    this.http.delete('/contacts/' + id)
+    this.http.delete('/api/contacts/' + id)
       .subscribe(res => {
           this.router.navigate(['/contact']);
         }, (err) => {

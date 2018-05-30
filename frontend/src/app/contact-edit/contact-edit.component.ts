@@ -26,7 +26,7 @@ export class ContactEditComponent implements OnInit {
   }
 
   updateContact(id, data) {
-    this.http.put('/contacts/' + id, data)
+    this.http.put('/api/contacts/' + id, data)
       .subscribe(res => {
           // tslint:disable-next-line:no-shadowed-variable
           const id = res['id'];

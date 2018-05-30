@@ -24,7 +24,7 @@ export class ContractCreateComponent implements OnInit {
   }
 
   addContract(id, data) {
-    this.http.post('/contacts/' + id, data)
+    this.http.post('/api/contacts/' + id, data)
       .subscribe(res => {
         id = res['id'];
         this.router.navigate(['/contract'], {queryParams: {idContract: this.idContract, idContact: this.idContact}});
@@ -35,7 +35,7 @@ export class ContractCreateComponent implements OnInit {
   }
 
   getContactDetail(id) {
-    this.http.get('/contacts/' + id).subscribe(data => {
+    this.http.get('/api/contacts/' + id).subscribe(data => {
       this.contact = data;
     });
   }

@@ -17,7 +17,7 @@ export class ContactComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
   ngOnInit() {
-    this.http.get('/contacts').subscribe(data => {
+    this.http.get('/api/contacts').subscribe(data => {
       this.contact = data;
       console.log(this.contact);
     });
