@@ -1,20 +1,22 @@
 <div class="container">
-  <h1>{{ contact.anrede }}  {{ contact.name }}</h1>
-  <dl class="list">
-    <dt>Address</dt>
-    <dd>{{ contact.address }}</dd>
-    <dt>City</dt>
-    <dd>{{ contact.city }}</dd>
-    <dt>Phone</dt>
-    <dd>{{ contact.phone }}</dd>
-    <dt>Email</dt>
-    <dd>{{ contact.email }}</dd>
-  </dl>
- <div class="row">
-  <div class="col-md-12">
-    <a [routerLink]="['/contact-edit']" [queryParams]=" { idContact: idContact }" class="btn btn-success">EDIT</a>
-    <button class="btn btn-danger" type="button" (click)="deleteContact(idContact)">DELETE</button>
-    <a [routerLink]="['/contact']" class="btn btn-danger">BACK</a>
-  </div>
-</div>
+<mat-card class="contact-details">
+  <mat-card-header>
+    <mat-card-title>Details zum Contact: </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list role="list">
+      <mat-list-item role="listitem"> Anrede: {{ contact.anrede }} </mat-list-item>
+      <mat-list-item role="listitem"> Name: {{ contact.name }}</mat-list-item>
+      <mat-list-item role="listitem"> Adresse: {{ contact.address }}</mat-list-item>
+      <mat-list-item role="listitem"> Ort: {{ contact.city }} </mat-list-item>
+      <mat-list-item role="listitem"> Telefon: {{ contact.phone }} </mat-list-item>
+      <mat-list-item role="listitem"> Email: {{ contact.email }} </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+      <a mat-raised-button color="warn"  [routerLink]="['/contact-edit']"  [queryParams]=" { idContact: idContact }">EDIT</a>
+      <a mat-raised-button color="warn"  [routerLink]="['/contact']" >BACK</a>
+      <button mat-raised-button color="primary"  type="button" (click)="deleteContact(idContact)">DELETE</button>
+  </mat-card-actions>
+</mat-card>
 </div>
