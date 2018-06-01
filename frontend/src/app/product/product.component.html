@@ -1,30 +1,38 @@
 <div class="container">
-  <h1>Productname Liste von: {{contract.type}}
-    <a [routerLink]="['/product-create']"  [queryParams]=" { idContact: idContact }" class="btn btn-default btn-lg">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-    </a>
-    <a [routerLink]="['/contract']" class="btn btn-danger">BACK</a>
+  <h1>List of products to contract: {{contract.typ}}
+    <div class="buttion-row">
+      <a mat-raised-button color="accent" [routerLink] = "['/product-create']" [queryParams]=" { idContract: idContract, idContact: idContact }" >Neues Produkt hinzufügen</a>
+      <a mat-raised-button color="warn" [routerLink]="['/contract']" >BACK</a>
+    </div>
   </h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Productname:</th>
-        <th>Beschreibung:</th>
-        <th>Bild:</th>
-        <th>Anzahl:</th>
-        <th>Preis:</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of contract.products">
-        <td>{{ product.name }}</td>
-        <td>{{ product.description }}</td>
-        <td>{{ product.imageUrl }}</td>
-        <td>{{ product.quantity }}</td>
-        <td>{{ prorcut.price }}</td>
-        <td><a [routerLink]="['/product-detail']" 
-          [queryParams]=" { idContract: contract.id, idContact: contact.id, idProduct: product.id } " >
-          Show Detail</a></td>
-      </tbody>
+
+  <table mat-table [dataSource] = "contract.products" class="mat-elevation-z8">
+      <!-- Position Column -->
+      <ng-container matColumnDef ="name">
+          <th mat-header-cell *matHeaderCellDef> Product name </th>
+          <td mat-cell *matCellDef ="let element"> {{element.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef ="description">
+          <th mat-header-cell *matHeaderCellDef> Description</th>
+          <td mat-cell *matCellDef ="let element"> {{element.description}} </td>
+      </ng-container>
+      <ng-container matColumnDef ="imageUrl">
+          <th mat-header-cell *matHeaderCellDef> Url to Picture </th>
+          <td mat-cell *matCellDef ="let element"> {{element.imageUrl}} </td>
+      </ng-container>     
+      <ng-container matColumnDef ="quanitity">
+          <th mat-header-cell *matHeaderCellDef> Quantity </th>
+          <td mat-cell *matCellDef ="let element"> {{element.quanitity}} </td>
+      </ng-container>
+      <ng-container matColumnDef ="price">
+          <th mat-header-cell *matHeaderCellDef> Price </th>
+          <td mat-cell *matCellDef ="let element"> {{element.price}} </td>
+      </ng-container>
+      <ng-container matColumnDef ="productDetails">
+        <th mat-header-cell *matHeaderCellDef> Product Details</th>
+        <td mat-cell *matCellDef ="let element"> <a [routerLink]="['/prodcut-detail']" [queryParams]="{ idContract: contract.id, idContact: contact.id, idProduct: element.id }" >Show Detail</a></td>
+      </ng-container>
+    <tr mat-header-row *matHeaderRowDef ="displayedColumns"></tr>
+    <tr mat-row *matRowDef ="let row; columns: displayedColumns;"></tr>    
   </table>
-</div>  
+</div>

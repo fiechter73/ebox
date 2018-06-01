@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ContractDetailComponent implements OnInit {
 
-  idContact: string;
+  idContact:  string;
   idContract: string;
   contract = {};
 

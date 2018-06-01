@@ -11,9 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.einstellbox.angular.models.Contact;
 import com.einstellbox.angular.models.Contract;
-import com.einstellbox.angular.models.Product;
 import com.einstellbox.angular.repositories.ContactRepository;
-import com.einstellbox.angular.repositories.ContractRepository;
 import com.einstellbox.angular.repositories.ProductRepository;
 
 @RestController
@@ -26,7 +24,7 @@ public class ProductController {
     ContactRepository contactRepository;
         
     
-    @RequestMapping(method=RequestMethod.GET, value="/products/{idcontact}/{idcontract}")
+    @RequestMapping(method=RequestMethod.GET, value="/api/products/{idcontact}/{idcontract}")
     public Contract showProduct(@PathVariable String idcontact, @PathVariable String idcontract ) {
         Contact c = contactRepository.findOne(idcontact);
         List<Contract> list = c.getContracts();

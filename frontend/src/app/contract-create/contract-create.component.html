@@ -4,30 +4,34 @@
     <div class="col-md-6">
       <form (ngSubmit)="addContract(contact.id, contract)" #contractForm="ngForm">
         <div class="form-group">
-          <mat-form-field class="example-full-width">
-            <input  matInput type="text" placeholder="Boxentype" class="form-control" [(ngModel)]="contract.type" name="type" required>
-          </mat-form-field>  
-        </div>
+          <mat-form-field>
+            <mat-select placeholder="Boxentyp" [(ngModel)]="contract.type" name="type" required>
+              <mat-option *ngFor="let boxtype of boxtypen" [value]="boxtype.value">
+                {{boxtype.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div> 
         <div class="form-group">
             <mat-form-field class="example-full-width">
-              <input  matInput type="text" placeholder="Boxennummer" class="form-control" [(ngModel)]="contract.boxNr" name="boxNr" required>
+              <input  matInput type="text" placeholder="Box Number" class="form-control" [(ngModel)]="contract.boxNr" name="boxNr" required>
             </mat-form-field>  
         </div>
         <div class="form-group">
             <mat-form-field class="example-full-width">
-              <input  matInput type="text" placeholder="Buildinginformation" class="form-control" [(ngModel)]="contract.buildingInfo" name="buildingInfo" required>
+              <input  matInput type="text" placeholder="Building Information" class="form-control" [(ngModel)]="contract.buildingInfo" name="buildingInfo" required>
             </mat-form-field>  
         </div>
         <div class="form-group">
             <mat-form-field class="example-full-width">
-              <input  matInput [matDatepicker]="picker" placeholder="Mietstartdatum" class="form-control" [(ngModel)]="contract.contractStartDate" name="contractStartDate" required>
+              <input  matInput [matDatepicker]="picker" placeholder="Contract start date" class="form-control" [(ngModel)]="contract.contractStartDate" name="contractStartDate" required>
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
         </div>
         <div class="form-group">
             <mat-form-field class="example-full-width">
-              <input  matInput [matDatepicker]="picker1" placeholder="Mietendatum" class="form-control" [(ngModel)]="contract.contractEndDate" name="contractEndDate" required>
+              <input  matInput [matDatepicker]="picker1" placeholder="Contract end date" class="form-control" [(ngModel)]="contract.contractEndDate" name="contractEndDate" required>
               <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
               <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>  

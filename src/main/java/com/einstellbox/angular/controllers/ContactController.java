@@ -4,11 +4,11 @@ import com.einstellbox.angular.models.Contact;
 import com.einstellbox.angular.models.Contract;
 
 import com.einstellbox.angular.repositories.ContactRepository;
-import com.einstellbox.angular.repositories.ContractRepository;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,13 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ContactController {
 	
-	private List<Contract> list = new ArrayList<Contract>();
+	private List<Contract> list = null;
 
     @Autowired
     ContactRepository contactRepository;
-    
-    @Autowired
-    ContractRepository contractRepository;
+
 
     @RequestMapping(method=RequestMethod.GET, value="api/contacts")
     public Iterable<Contact> contact() {
@@ -42,12 +40,15 @@ public class ContactController {
     
     @RequestMapping(method=RequestMethod.POST, value="api/contacts/{id}")
     public Contact add(@PathVariable String id, @RequestBody Contract contract) {
+    	list = new ArrayList<Contract>();
     	Contact c =contactRepository.findOne(id);
-    	//System.out.println(c.getEmail());
+    	System.out.println(c.getEmail());
     	if (c.getContracts() != null && c.getContracts().size()!= 0) {
     		list = c.getContracts();
+    		System.out.println(list.size());
     	}
-    		contractRepository.save(contract);
+    	    contract.setId(UUID.randomUUID().toString());
+    		// contractRepository.save(contract);
     		list.add(contract);
     		c.setContracts(list);
     		contactRepository.save(c);

@@ -11,6 +11,12 @@ import {FormControl} from '@angular/forms';
 })
 export class ContractCreateComponent implements OnInit {
 
+  boxtypen = [
+    {value: 'Basisbox', viewValue: 'Basisbox'},
+    {value: 'EcoBox', viewValue: 'EcoBox'},
+    {value: 'Premium EcoBox', viewValue: 'PremiumEcoBox'}
+  ];
+
   contact = {};
   contract = {};
   idContract: string;

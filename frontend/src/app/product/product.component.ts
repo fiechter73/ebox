@@ -9,10 +9,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
 
+  displayedColumns = ['name', 'description', 'imageUrl', 'quanitity', 'price', 'productDetails'];
   contract = {};
-  idContact: string;
+  idContact:  string;
   idContract: string;
-  idProduct: string;
+  idProduct:  string;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
@@ -21,12 +22,13 @@ export class ProductComponent implements OnInit {
     this.idContract = this.route.snapshot.queryParams['idContract'];
     this.idContact = this.route.snapshot.queryParams['idContact'];
     this.idProduct = this.route.snapshot.queryParams['idProduct'];
-    this.getProductDetails(this.idContact, this.idContract);
+    this.getContractDetail(this.idContact, this.idContract);
   }
 
-  getProductDetails(idContact, idContract) {
+  getContractDetail(idContact, idContract) {
     this.http.get('/api/products/' + idContact + '/' + idContract).subscribe(data => {
       this.contract = data;
+      console.log(data);
     });
   }
 

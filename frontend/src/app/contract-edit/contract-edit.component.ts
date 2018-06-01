@@ -10,6 +10,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ContractEditComponent implements OnInit {
 
+  boxtypen = [
+    {value: 'Basisbox', viewValue: 'Basisbox'},
+    {value: 'EcoBox', viewValue: 'EcoBox'},
+    {value: 'Premium EcoBox', viewValue: 'PremiumEcoBox'}
+  ];
+
   contract = {};
   idContact: string;
   idContract: string;
