@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Contract Liste von: {{contact.name}}
     <div class="buttion-row">
-      <a mat-raised-button color="accent" [routerLink] = "['/contract-create']" >Neuer Vertrag hinzufügen</a>
+      <a mat-raised-button color="accent" [routerLink] = "['/contract-create']" [queryParams]=" { idContract: idContract, idContact: idContact }" >Neuer Vertrag hinzufügen</a>
       <a mat-raised-button color="warn" [routerLink]="['/contact']" >BACK</a>
     </div>
     
@@ -30,11 +30,11 @@
       </ng-container>
       <ng-container matColumnDef ="contractDetails">
         <th mat-header-cell *matHeaderCellDef> Contract Details</th>
-        <td mat-cell *matCellDef ="let element"> <a [routerLink]="['/contract-detail']" [queryParams]=" { idContract: idContract, idContact: idContact } " >Show Detail</a></td>
+        <td mat-cell *matCellDef ="let element"> <a [routerLink]="['/contract-detail']" [queryParams]="{ idContract: idContract, idContact: idContact }" >Show Detail</a></td>
       </ng-container>
       <ng-container matColumnDef ="addProducts">
         <th mat-header-cell *matHeaderCellDef> Contract Details</th>
-        <td mat-cell *matCellDef ="let element"> <a [routerLink]="['/product']" [queryParams]=" { idContract: idContract, idContact: idContact } " >Add Product</a></td>
+        <td mat-cell *matCellDef ="let element"> <a [routerLink]="['/product']" [queryParams]="{ idContract: idContract, idContact: idContact }" >Add Product</a></td>
       </ng-container>
 
     <tr mat-header-row *matHeaderRowDef ="displayedColumns"></tr>

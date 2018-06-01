@@ -29,7 +29,7 @@ export class ContractDetailComponent implements OnInit {
   }
 
   deleteContract(idContact, idContract, contract ) {
-    this.http.put('/contractofcontactsdel/' + idContact + '/' + idContract, contract )
+    this.http.put('/api/contractofcontactsdel/' + idContact + '/' + idContract, contract )
       .subscribe(res => {
         this.router.navigate(['/contract'], {queryParams: {idContract: this.idContract, idContact: this.idContact}});
       }, (err) => {

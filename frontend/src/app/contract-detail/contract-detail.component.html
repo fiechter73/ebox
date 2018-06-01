@@ -1,22 +1,21 @@
 <div class="container">
-  <h1>Detailansicht:</h1>
-  <dl class="list">
-    <dt>Boxentype:</dt>
-    <dd>{{ contract.type }}</dd>      
-    <dt>Boxnummer:</dt>
-    <dd>{{ contract.boxNr }}</dd>
-    <dt>Building Information:</dt>
-    <dd>{{ contract.buildingInfo }}</dd>
-    <dt>Miet Startdatum:</dt>
-    <dd>{{ contract.contractStartDate }}</dd>
-    <dt>Miet Enddatum:</dt>
-    <dd>{{ contract.contractEndDate }}</dd>
-  </dl>
-  <div class="row">
-    <div class="col-md-12">
-      <a [routerLink]="['/contract-edit']" [queryParams]=" { idContract: contract.id, idContact: idContact }" class="btn btn-success">EDIT</a>
-      <button class="btn btn-danger" type="button" (click)="deleteContract(idContact, contract.id, contract)">DELETE</button>
-      <a [routerLink]="['/contract']" [queryParams]=" { idContract: contract.id, idContact: idContact }" class="btn btn-danger">BACK</a>
-    </div>
+  <mat-card class="contact-details">
+    <mat-card-header>
+      <mat-card-title>Detailansicht:</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <mat-list role="list">
+        <mat-list-item role="listitem"> Boxentype: {{ contract.type }} </mat-list-item>
+        <mat-list-item role="listitem"> Boxnummer: {{ contract.boxNr }}</mat-list-item>
+        <mat-list-item role="listitem"> Building Information: {{ contract.buildingInfo }}</mat-list-item>
+        <mat-list-item role="listitem"> Miet Startdatum:{{ contract.contractStartDate }} </mat-list-item>
+        <mat-list-item role="listitem"> Miet Enddatum: {{ contract.contractEndDate}} </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+        <a mat-raised-button color="warn"  [routerLink]="['/contract-edit']" [queryParams]=" { idContract: contract.id, idContact: idContact }">EDIT</a>
+        <a mat-raised-button color="warn"  [routerLink]="['/contract']" [queryParams]=" { idContract: contract.id, idContact: idContact }">BACK</a>
+        <button mat-raised-button color="primary"  type="button" (click)="deleteContract(idContact, contract.id, contract)">DELETE</button>
+    </mat-card-actions>
+  </mat-card>
   </div>
-</div>

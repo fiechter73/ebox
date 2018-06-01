@@ -26,7 +26,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatListModule} from '@angular/material/list';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 const appRoutes: Routes = [
@@ -142,6 +144,8 @@ const appRoutes: Routes = [
     MatSelectModule,
     MatCardModule,
     MatListModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only

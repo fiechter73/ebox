@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient} from '@angular/common/http';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-contract-create',
@@ -14,6 +16,9 @@ export class ContractCreateComponent implements OnInit {
   idContract: string;
   idContact: string;
 
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
+
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
 
 
@@ -21,6 +26,8 @@ export class ContractCreateComponent implements OnInit {
     this.idContract = this.route.snapshot.queryParams['idContract'];
     this.idContact = this.route.snapshot.queryParams['idContact'];
     this.getContactDetail(this.idContact);
+    console.log('IdContact:' + this.idContact);
+    console.log('IdContract' + this.idContract);
   }
 
   addContract(id, data) {
