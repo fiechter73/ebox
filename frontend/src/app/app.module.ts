@@ -29,6 +29,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatCheckbox, MatCheckboxModule } from '@angular/material';
 
 
 const appRoutes: Routes = [
@@ -146,6 +147,7 @@ const appRoutes: Routes = [
     MatListModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatCheckboxModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: true } // <-- debugging purposes only
