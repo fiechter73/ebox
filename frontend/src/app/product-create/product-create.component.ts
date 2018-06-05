@@ -7,6 +7,8 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
+import {ProductCatalogue} from '../product.catalouge';
+
 @Component({
   selector: 'app-product-create',
   templateUrl: './product-create.component.html',
@@ -16,19 +18,50 @@ export class ProductCreateComponent implements OnInit {
 
   displayedColumns = ['select', 'name', 'imageUrl', 'description', 'quanitity', 'price'];
 
-  newProduct: Product[];
+  arrayOfProductCatalogue: ProductCatalogue[];
 
-  data = Object.assign(PRODUCT_DATA);
-  dataSource = new MatTableDataSource<Element>(this.data);
+  dataSource: MatTableDataSource<Element>;
+  data = ProductCatalogue;
   selection = new SelectionModel<Element>(true, []);
 
+
   constructor(private http: HttpClient, private router: Router) {
-    console.log(this.data);
+    this.arrayOfProductCatalogue = [
+      new ProductCatalogue(
+      1,
+      'Basisbox',
+      '/assets/images/products/black-hat.jpg',
+      ['7.45 x 3.5 x 2.5'],
+      1,
+      360.00),
+      new ProductCatalogue(
+      2,
+      'EcoBox',
+      '/assets/images/products/black-shoes.jpg',
+      ['7.45 x 3.5 x 2.5'],
+      1,
+      120.00),
+      new ProductCatalogue(
+      3,
+      'Premium-Box',
+      '/assets/images/products/blue-jacket.jpg',
+      ['7.45 x 3.5 x 2.5'],
+      1,
+      150.00),
+      new ProductCatalogue(
+      4,
+      'Aussenplatz',
+      '/assets/images/products/black-shoes.jpg',
+      ['7.45 x 3.5 x 2.5'],
+      1,
+      200.00)
+    ];
   }
 
   ngOnInit() {
-  }
-
+  this.data = Object.assign(this.arrayOfProductCatalogue);
+  this.dataSource =  new MatTableDataSource<Element>(Object.assign(this.data));
+ }
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -38,16 +71,15 @@ export class ProductCreateComponent implements OnInit {
   }
   saveProduct() {
     this.selection.selected.forEach(item => {
-      const index: number = this.data.findIndex(d => d === item);
-     // console.log(this.data.findIndex(d => d === item));
-      this.data.slice(index);
-     this.newProduct.push( {position: 1, name: 'Basisbox', imageUrl: '/assets/images/products/black-hat.jpg',
-     description: ['7.45 x 3.5 x 2.5'], quanitity: 1 , price: 360.00});
-      console.log(this.data[index].position);
-     // this.dataSource = new MatTableDataSource<Element>(this.data);
+      const index: number = this.dataSource.data.findIndex(d => d === item);
+      this.dataSource.data.slice(index);
+      const productCatalogue = this.data[index];
+      console.log(this.data);
+      console.log(this.data[index].name);
+      console.log(productCatalogue);
+      this.save(productCatalogue);
     });
-   // this.selection = new SelectionModel<Element>(true, []);
-   console.log(this.newProduct);
+   this.selection = new SelectionModel<Element>(true, []);
   }
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
@@ -56,37 +88,12 @@ export class ProductCreateComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
- // save(Product: product) {
- //   this.http.post('/api/products', )
- //     .subscribe(res => {
- //        this.router.navigate(['/product']);
- //       }, (err) => {
- //         console.log(err);
- //       }
- //     );
- // }
+  save(productCatalogue: ProductCatalogue) {
+    // save
 
-
-
+  }
 }
 
-export interface Product {
-  position: number;
-  name: string;
-  imageUrl: string;
-  description: string[];
-  quanitity: number;
-  price: number;
-}
-
-const PRODUCT_DATA: Product[] = [
-  {position: 1, name: 'Basisbox', imageUrl: '/assets/images/products/black-hat.jpg',
-     description: ['7.45 x 3.5 x 2.5'], quanitity: 1 , price: 360.00},
-  {position: 1, name: 'Basisbox', imageUrl: '/assets/images/products/black-hat.jpg',
-     description: ['7.45 x 3.5 x 2.5'], quanitity: 1 , price: 110.00},
-  {position: 1, name: 'Basisbox', imageUrl: '/assets/images/products/black-hat.jpg',
-     description: ['7.45 x 3.5 x 2.5'], quanitity: 1 , price: 200.00}
-];
 
 
 
