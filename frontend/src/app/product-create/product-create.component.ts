@@ -4,8 +4,11 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+
+
+
 
 import {ProductCatalogue} from '../product.catalouge';
 
@@ -24,8 +27,12 @@ export class ProductCreateComponent implements OnInit {
   data = ProductCatalogue;
   selection = new SelectionModel<Element>(true, []);
 
+  idContact: string;
+  idContract: string;
 
-  constructor(private http: HttpClient, private router: Router) {
+
+
+  constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute ) {
     this.arrayOfProductCatalogue = [
       new ProductCatalogue(
       1,
@@ -61,6 +68,8 @@ export class ProductCreateComponent implements OnInit {
   ngOnInit() {
   this.data = Object.assign(this.arrayOfProductCatalogue);
   this.dataSource =  new MatTableDataSource<Element>(Object.assign(this.data));
+  this.idContract = this.route.snapshot.queryParams['idContract'];
+  this.idContact = this.route.snapshot.queryParams['idContact'];
  }
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -77,7 +86,7 @@ export class ProductCreateComponent implements OnInit {
       console.log(this.data);
       console.log(this.data[index].name);
       console.log(productCatalogue);
-      this.save(productCatalogue);
+      this.saveProcuct(productCatalogue);
     });
    this.selection = new SelectionModel<Element>(true, []);
   }
@@ -88,9 +97,14 @@ export class ProductCreateComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  save(productCatalogue: ProductCatalogue) {
-    // save
-
+  saveProcuct(productCatalogue ) {
+    this.http.post('/api/products/' + this.idContact + '/' +  this.idContract, productCatalogue)
+      .subscribe(res => {
+        this.router.navigate(['/product'], {queryParams: {idContract: this.idContract, idContact: this.idContact}});
+      }, (err) => {
+        console.log(err);
+      }
+    );
   }
 }
 
