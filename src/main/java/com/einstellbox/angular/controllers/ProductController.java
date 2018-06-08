@@ -45,6 +45,7 @@ public class ProductController {
     			break;
     		}	
     	}
+    	System.out.println("Data: "+con.getProdcuts().toString() );
     	return con;
     }
     

@@ -22,13 +22,13 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(String type, String boxNr, String buildingInfo, String contractStartDate, String contractEndDate) {
-    	this.type = type; 
-    	this.boxNr = boxNr;
-        this.buildingInfo = buildingInfo;
-        this.contractStartDate = contractStartDate;
-        this.contractEndDate = contractEndDate;
-    }
+//    public Contract(String type, String boxNr, String buildingInfo, String contractStartDate, String contractEndDate) {
+//    	this.type = type; 
+//    	this.boxNr = boxNr;
+//        this.buildingInfo = buildingInfo;
+//        this.contractStartDate = contractStartDate;
+//        this.contractEndDate = contractEndDate;
+//    }
     
     public Contract(String type, String boxNr, String buildingInfo, String contractStartDate, String contractEndDate, List<Product> products) {
     	this.type = type; 

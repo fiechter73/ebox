@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+import {ProductCatalogue} from '../product.catalouge';
 
 @Component({
   selector: 'app-product',
@@ -11,6 +12,8 @@ export class ProductComponent implements OnInit {
 
   displayedColumns = ['name', 'description', 'imageUrl', 'quanitity', 'price', 'productDetails'];
   contract = {};
+ // contract = [new ProductCatalogue(1, 'Basisbox', '/assets/images/products/black-hat.jpg', ['7.45 x 3.5 x 2.5'], 1, 360.00)];
+
   idContact:  string;
   idContract: string;
   idProduct:  string;
@@ -28,7 +31,7 @@ export class ProductComponent implements OnInit {
   getContractDetail(idContact, idContract) {
     this.http.get('/api/products/' + idContact + '/' + idContract).subscribe(data => {
       this.contract = data;
-      console.log(data);
+      console.log('Daten ' + this.contract.products);
     });
   }
 
