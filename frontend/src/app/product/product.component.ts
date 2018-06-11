@@ -40,8 +40,8 @@ export class ProductComponent implements OnInit {
      this.contract = data;
      console.log(this.contract);
          // this.contract = Object.assign(data);
-     // this.dataSource =  new MatTableDataSource<Element>(Object.assign(data));
-     // console.log(this.dataSource);
+     this.dataSource =  new MatTableDataSource<Element>(Object.assign(data));
+     console.log(this.dataSource);
     });
   }
 
