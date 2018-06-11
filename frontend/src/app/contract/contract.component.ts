@@ -26,6 +26,7 @@ export class ContractComponent implements OnInit {
   getContactDetail(id) {
     this.http.get('/api/contacts/' + id).subscribe(data => {
       this.contact = data;
+      console.log(this.contact);
     });
   }
 

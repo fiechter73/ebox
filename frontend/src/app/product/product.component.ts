@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import {ProductCatalogue} from '../product.catalouge';
+import { MatTableDataSource } from '@angular/material';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-product',
@@ -11,9 +14,13 @@ import {ProductCatalogue} from '../product.catalouge';
 export class ProductComponent implements OnInit {
 
   displayedColumns = ['name', 'description', 'imageUrl', 'quanitity', 'price', 'productDetails'];
-  contract = {};
- // contract = [new ProductCatalogue(1, 'Basisbox', '/assets/images/products/black-hat.jpg', ['7.45 x 3.5 x 2.5'], 1, 360.00)];
 
+  productCatalogue: any;
+
+   dataSource: MatTableDataSource<Element>;
+
+
+  contract = {};
   idContact:  string;
   idContract: string;
   idProduct:  string;
@@ -30,8 +37,11 @@ export class ProductComponent implements OnInit {
 
   getContractDetail(idContact, idContract) {
     this.http.get('/api/products/' + idContact + '/' + idContract).subscribe(data => {
-      this.contract = data;
-      console.log('Daten ' + this.contract.products);
+     this.contract = data;
+     console.log(this.contract);
+         // this.contract = Object.assign(data);
+     // this.dataSource =  new MatTableDataSource<Element>(Object.assign(data));
+     // console.log(this.dataSource);
     });
   }
 
