@@ -40,7 +40,7 @@ public class Contract {
     } 
     
 	
-    public List<Product> getProdcuts() {
+    public List<Product> getProducts() {
 		return this.products;
 	}
 

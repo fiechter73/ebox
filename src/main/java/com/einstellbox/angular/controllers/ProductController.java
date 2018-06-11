@@ -45,7 +45,7 @@ public class ProductController {
     			break;
     		}	
     	}
-    	System.out.println("Data: "+con.getProdcuts().get(1) );
+    	System.out.println("Data: "+con.getProducts().get(1) );
     	return con;
     }
     
@@ -64,9 +64,8 @@ public class ProductController {
         		if (con.getId().equals(idcontract)) {
         			System.out.println("Output: "+ con.getBoxNr());
         			product.setId(UUID.randomUUID().toString());
-        			if (con.getProdcuts() != null && con.getProdcuts().size()!= 0) {
-            			pList = con.getProdcuts();
-            			pList.add(product);
+        			if (con.getProducts() != null && con.getProducts().size()!= 0) {
+            			pList = con.getProducts();
         			}
         			pList.add(product);
         			con.setProducts(pList);

@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
-
 import {ProductCatalogue} from '../product.catalouge';
 import { MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
+import { map } from 'rxjs/operators';
+
+
 
 @Component({
   selector: 'app-product',
@@ -15,12 +17,8 @@ export class ProductComponent implements OnInit {
 
   displayedColumns = ['name', 'description', 'imageUrl', 'quanitity', 'price', 'productDetails'];
 
-  productCatalogue: any;
-
-   dataSource: MatTableDataSource<Element>;
-
-
   contract = {};
+  product: any;
   idContact:  string;
   idContract: string;
   idProduct:  string;
@@ -31,17 +29,23 @@ export class ProductComponent implements OnInit {
   ngOnInit() {
     this.idContract = this.route.snapshot.queryParams['idContract'];
     this.idContact = this.route.snapshot.queryParams['idContact'];
-    this.idProduct = this.route.snapshot.queryParams['idProduct'];
     this.getContractDetail(this.idContact, this.idContract);
   }
 
+//  getContractDetail(idContact, idContract) {
+//    this.http.get('/api/products/' + idContact + '/' + idContract).pipe(
+//      map(res => {
+//        console.log(res);
+//        return res['prodcuts'];
+//      }) // or any other operator
+//    )
+//    .subscribe(products => console.log(products));
+//  }
+
   getContractDetail(idContact, idContract) {
     this.http.get('/api/products/' + idContact + '/' + idContract).subscribe(data => {
-     this.contract = data;
-     console.log(this.contract);
-         // this.contract = Object.assign(data);
-     this.dataSource =  new MatTableDataSource<Element>(Object.assign(data));
-     console.log(this.dataSource);
+      this.contract = data;
+      console.log(this.contract);
     });
   }
 
