@@ -17,7 +17,7 @@ export class ProductComponent implements OnInit {
 
   displayedColumns = ['name', 'description', 'imageUrl', 'quanitity', 'price', 'productDetails'];
 
-  prod = {};
+  prod: any;
   contract = {};
   idContact:  string;
   idContract: string;
@@ -55,14 +55,10 @@ export class ProductComponent implements OnInit {
       map(res => {
         console.log(res);
         this.prod = res;
-        return res['products'];
+      //  return res['products'].map(t => t.price).reduce((acc, value) => acc + value, 0);
+      return res['products'];
       })
       )
       .subscribe(products => console.log(products[0].price));
   }
-
-  calcPrice() {
-    return '1000';
-  }
-
 }
