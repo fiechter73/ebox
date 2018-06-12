@@ -17,8 +17,8 @@ export class ProductComponent implements OnInit {
 
   displayedColumns = ['name', 'description', 'imageUrl', 'quanitity', 'price', 'productDetails'];
 
+  prod = {};
   contract = {};
-  product: any;
   idContact:  string;
   idContract: string;
   idProduct:  string;
@@ -30,6 +30,7 @@ export class ProductComponent implements OnInit {
     this.idContract = this.route.snapshot.queryParams['idContract'];
     this.idContact = this.route.snapshot.queryParams['idContact'];
     this.getContractDetail(this.idContact, this.idContract);
+    this.calcSum(this.idContact, this.idContract);
   }
 
 //  getContractDetail(idContact, idContract) {
@@ -47,6 +48,21 @@ export class ProductComponent implements OnInit {
       this.contract = data;
       console.log(this.contract);
     });
+  }
+
+  calcSum(idContact, idContract) {
+    this.http.get('/api/products/' + idContact + '/' + idContract).pipe(
+      map(res => {
+        console.log(res);
+        this.prod = res;
+        return res['products'];
+      })
+      )
+      .subscribe(products => console.log(products[0].price));
+  }
+
+  calcPrice() {
+    return '1000';
   }
 
 }
