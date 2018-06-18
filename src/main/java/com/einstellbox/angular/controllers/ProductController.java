@@ -75,5 +75,35 @@ public class ProductController {
     	contactRepository.save(c);
     	return c;
     }
-
+    
+    @RequestMapping(method=RequestMethod.PUT, value="api/contractofcontactsdel/{idcontact}/{idcontract}/{idproduct}")
+    public String delProduct(@PathVariable String idcontact, @PathVariable String idcontract, 
+    		                 @PathVariable String idproduct, @RequestBody Product product ) {
+    	System.out.println(idcontact);
+    	System.out.println(idcontract);
+    	System.out.println(idproduct);
+    	Contact c = contactRepository.findOne(idcontact);
+    	System.out.println(c.getAddress());
+        List<Contract> list = c.getContracts();
+        Contract con = null;
+        Iterator<Contract> iter = list.iterator();
+    	while (iter.hasNext() ) {    		
+    		con =iter.next();
+    		if (con.getId().equals(idcontract)) {
+    			List <Product> prodList = con.getProducts();
+    			Product prod = null; 
+    			Iterator<Product> iterProd = prodList.iterator();
+    			while (iterProd.hasNext() ) {
+    				prod = iterProd.next();
+    				if (prod.getId().equals(product.getId())) {
+    					prodList.remove(prod);
+    	    			break;
+    				}
+    			}
+    	    	con.setProducts(prodList);
+    		}
+    	}
+    	contactRepository.save(c);
+    	return "";
+    }
 }

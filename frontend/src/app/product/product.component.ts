@@ -5,6 +5,8 @@ import {ProductCatalogue} from '../product.catalouge';
 import { MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { map } from 'rxjs/operators';
+import { reduce } from 'rxjs/operators';
+import { element } from 'protractor';
 
 
 
@@ -22,6 +24,8 @@ export class ProductComponent implements OnInit {
   idContact:  string;
   idContract: string;
   idProduct:  string;
+  preise = [];
+  calcPrice: string;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
@@ -50,15 +54,30 @@ export class ProductComponent implements OnInit {
     });
   }
 
+  deleteProduct(idContact, idContract, idProduct, product ) {
+    this.http.put('/api/contractofcontactsdel/' + idContact + '/' + idContract + '/' + idProduct , product )
+      .subscribe(res => {
+        this.router.navigate(['/product'], {queryParams: {idContract: this.idContract, idContact: this.idContact }});
+      }, (err) => {
+      console.log(err);
+      }
+    );
+  }
+
   calcSum(idContact, idContract) {
     this.http.get('/api/products/' + idContact + '/' + idContract).pipe(
       map(res => {
-        console.log(res);
-        this.prod = res;
-      //  return res['products'].map(t => t.price).reduce((acc, value) => acc + value, 0);
-      return res['products'];
+        return res['products'];
       })
       )
-      .subscribe(products => console.log(products[0].price));
+      .subscribe(products => {
+        // tslint:disable-next-line:no-shadowed-variable
+        products.forEach(element => {
+          this.preise.push(element.price);
+        });
+        const sum = this.preise.reduce((acc, val) => acc + val);
+        this.calcPrice = Math.floor(sum / 100 * 7.7) + sum;
+      }
+    );
   }
 }
