@@ -7,6 +7,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { map } from 'rxjs/operators';
 import { reduce } from 'rxjs/operators';
 import { element } from 'protractor';
+import { Observable } from 'rxjs';
 
 
 
@@ -34,18 +35,8 @@ export class ProductComponent implements OnInit {
     this.idContract = this.route.snapshot.queryParams['idContract'];
     this.idContact = this.route.snapshot.queryParams['idContact'];
     this.getContractDetail(this.idContact, this.idContract);
-    this.calcSum(this.idContact, this.idContract);
+    this.calcSum();
   }
-
-//  getContractDetail(idContact, idContract) {
-//    this.http.get('/api/products/' + idContact + '/' + idContract).pipe(
-//      map(res => {
-//        console.log(res);
-//        return res['prodcuts'];
-//      }) // or any other operator
-//    )
-//    .subscribe(products => console.log(products));
-//  }
 
   getContractDetail(idContact, idContract) {
     this.http.get('/api/products/' + idContact + '/' + idContract).subscribe(data => {
@@ -55,7 +46,8 @@ export class ProductComponent implements OnInit {
   }
 
   deleteProduct(idContact, idContract, idProduct, product ) {
-    this.http.put('/api/contractofcontactsdel/' + idContact + '/' + idContract + '/' + idProduct , product )
+    console.log('DeleteProduct');
+    this.http.put('/api/productdel/' + idContact + '/' + idContract + '/' + idProduct , product )
       .subscribe(res => {
         this.router.navigate(['/product'], {queryParams: {idContract: this.idContract, idContact: this.idContact }});
       }, (err) => {
@@ -64,20 +56,24 @@ export class ProductComponent implements OnInit {
     );
   }
 
-  calcSum(idContact, idContract) {
-    this.http.get('/api/products/' + idContact + '/' + idContract).pipe(
-      map(res => {
-        return res['products'];
-      })
-      )
-      .subscribe(products => {
-        // tslint:disable-next-line:no-shadowed-variable
-        products.forEach(element => {
-          this.preise.push(element.price);
-        });
-        const sum = this.preise.reduce((acc, val) => acc + val);
-        this.calcPrice = Math.floor(sum / 100 * 7.7) + sum;
-      }
-    );
-  }
+    calcSum() {
+      this.http.get('/api/products/' + this.idContact + '/' + this.idContract).pipe(
+        map(res => {
+          return res['products'];
+        })
+        )
+        .subscribe(products => {
+          if (products.length > 0) {
+            // tslint:disable-next-line:no-shadowed-variable
+            products.forEach(element => {
+              this.preise.push(element.price);
+            });
+            const sum = this.preise.reduce((acc, val) => acc + val);
+            this.calcPrice =  Math.floor(sum / 100 * 7.7) + sum;
+          } else {
+            this.calcPrice = '';
+          }
+        }
+      );
+    }
 }

@@ -45,16 +45,15 @@ public class ProductController {
     			break;
     		}	
     	}
-    	System.out.println("Data: "+con.getProducts().get(1) );
     	return con;
     }
     
     @RequestMapping(method=RequestMethod.POST, value="api/products/{idcontact}/{idcontract}")
     public Contact saveProduct(@PathVariable String idcontact, @PathVariable String idcontract, @RequestBody Product product) {
-    	list = new ArrayList<Contract>();
-    	pList = new ArrayList<Product>();
+    	list = null;
+    	pList = null;
     	Contact c =contactRepository.findOne(idcontact);
-    	System.out.println(c.getEmail());
+    	System.out.println("IdContact : " +c.getId());
     	if (c.getContracts() != null && c.getContracts().size()!= 0) {
     		list = c.getContracts();
     		Contract con = null;
@@ -62,10 +61,12 @@ public class ProductController {
         	while (iter.hasNext() ) {    		
         		con =iter.next();
         		if (con.getId().equals(idcontract)) {
-        			System.out.println("Output: "+ con.getBoxNr());
         			product.setId(UUID.randomUUID().toString());
+        			System.out.println("Size: " +con.getProducts().size()+ " Name: "  +product.getName());
         			if (con.getProducts() != null && con.getProducts().size()!= 0) {
             			pList = con.getProducts();
+        			} else {
+        				pList = new ArrayList<Product>();
         			}
         			pList.add(product);
         			con.setProducts(pList);
@@ -76,14 +77,14 @@ public class ProductController {
     	return c;
     }
     
-    @RequestMapping(method=RequestMethod.PUT, value="api/contractofcontactsdel/{idcontact}/{idcontract}/{idproduct}")
+    @RequestMapping(method=RequestMethod.PUT, value="api/productdel/{idcontact}/{idcontract}/{idproduct}")
     public String delProduct(@PathVariable String idcontact, @PathVariable String idcontract, 
     		                 @PathVariable String idproduct, @RequestBody Product product ) {
-    	System.out.println(idcontact);
-    	System.out.println(idcontract);
-    	System.out.println(idproduct);
+    	System.out.println("Contact: "+ idcontact);
+    	System.out.println("Contract: " +idcontract);
+    	System.out.println("Produkt: "+ idproduct);
     	Contact c = contactRepository.findOne(idcontact);
-    	System.out.println(c.getAddress());
+    	System.out.println("Get Address: "+c.getAddress());
         List<Contract> list = c.getContracts();
         Contract con = null;
         Iterator<Contract> iter = list.iterator();
@@ -96,6 +97,7 @@ public class ProductController {
     			while (iterProd.hasNext() ) {
     				prod = iterProd.next();
     				if (prod.getId().equals(product.getId())) {
+            			System.out.println(prod.getName());
     					prodList.remove(prod);
     	    			break;
     				}

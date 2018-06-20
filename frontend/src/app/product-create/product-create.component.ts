@@ -29,7 +29,7 @@ export class ProductCreateComponent implements OnInit {
 
   idContact: string;
   idContract: string;
-
+  products: ProductCatalogue[];
 
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute ) {
@@ -83,10 +83,9 @@ export class ProductCreateComponent implements OnInit {
       const index: number = this.dataSource.data.findIndex(d => d === item);
       this.dataSource.data.slice(index);
       const productCatalogue = this.data[index];
-      console.log(this.data);
       console.log(this.data[index].name);
-      console.log(productCatalogue);
-      this.saveProcuct(productCatalogue);
+      this.products.push(productCatalogue);
+     // this.saveProcuctBack(this.products);
     });
    this.selection = new SelectionModel<Element>(true, []);
   }
@@ -97,7 +96,7 @@ export class ProductCreateComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  saveProcuct(productCatalogue ) {
+  saveProcuctBack(productCatalogue) {
     this.http.post('/api/products/' + this.idContact + '/' +  this.idContract, productCatalogue)
       .subscribe(res => {
         this.router.navigate(['/product'], {queryParams: {idContract: this.idContract, idContact: this.idContact}});
