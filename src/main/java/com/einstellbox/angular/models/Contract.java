@@ -1,6 +1,7 @@
 package com.einstellbox.angular.models;
 
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -14,8 +15,8 @@ public class Contract {
     String type;   // BasisBox, Parkplatz
     String boxNr;
     String buildingInfo;
-    String contractStartDate;
-    String contractEndDate;
+    Date contractStartDate;
+    Date contractEndDate;
     List<Product> products;
 
     
@@ -30,7 +31,7 @@ public class Contract {
 //        this.contractEndDate = contractEndDate;
 //    }
     
-    public Contract(String type, String boxNr, String buildingInfo, String contractStartDate, String contractEndDate, List<Product> products) {
+    public Contract(String type, String boxNr, String buildingInfo, Date contractStartDate, Date contractEndDate, List<Product> products) {
     	this.type = type; 
     	this.boxNr = boxNr;
         this.buildingInfo = buildingInfo;
@@ -80,19 +81,19 @@ public class Contract {
     	this.buildingInfo = buildingInfo; 
     }
     
-    public String getContractStartDate() {
+    public Date getContractStartDate() {
     	return contractStartDate;
     }
     
-    public void setContractStartDate(String contractStartDate) {
+    public void setContractStartDate(Date contractStartDate) {
     	this.contractStartDate = contractStartDate; 
     }
     
-    public String getContractEndDate() {
+    public Date getContractEndDate() {
     	return contractEndDate;
     }
     
-    public void setContractEndDate(String contractEndDate) {
+    public void setContractEndDate(Date contractEndDate) {
     	this.contractEndDate = contractEndDate; 
     }
     

@@ -49,11 +49,11 @@ public class ProductController {
     }
     
     @RequestMapping(method=RequestMethod.POST, value="api/products/{idcontact}/{idcontract}")
-    public Contact saveProduct(@PathVariable String idcontact, @PathVariable String idcontract, @RequestBody Product product) {
+    public Contact saveProduct(@PathVariable String idcontact, @PathVariable String idcontract, @RequestBody Product[] product) {
     	list = null;
     	pList = null;
     	Contact c =contactRepository.findOne(idcontact);
-    	System.out.println("IdContact : " +c.getId());
+    	//System.out.println("IdContact : " +c.getId());
     	if (c.getContracts() != null && c.getContracts().size()!= 0) {
     		list = c.getContracts();
     		Contract con = null;
@@ -61,15 +61,18 @@ public class ProductController {
         	while (iter.hasNext() ) {    		
         		con =iter.next();
         		if (con.getId().equals(idcontract)) {
-        			product.setId(UUID.randomUUID().toString());
-        			System.out.println("Size: " +con.getProducts().size()+ " Name: "  +product.getName());
-        			if (con.getProducts() != null && con.getProducts().size()!= 0) {
-            			pList = con.getProducts();
-        			} else {
-        				pList = new ArrayList<Product>();
-        			}
-        			pList.add(product);
-        			con.setProducts(pList);
+        		  // System.out.println("Size: " +con.getProducts().size());
+        		   if (con.getProducts() != null && con.getProducts().size()!= 0) {
+            		   pList = con.getProducts();
+        		   } else {
+        		      pList = new ArrayList<Product>();
+        		   }	
+        		   for (int i=0; i<product.length; i++) {
+        		     //System.out.println("Name: " +product[i].getName());
+        			 product[i].setId(UUID.randomUUID().toString());
+         			 pList.add(product[i]);
+        		   }
+        		   con.setProducts(pList);
         		}	
         	}
     	}

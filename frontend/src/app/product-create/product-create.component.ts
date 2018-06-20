@@ -7,9 +7,6 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
-
-
-
 import {ProductCatalogue} from '../product.catalouge';
 
 @Component({
@@ -29,7 +26,7 @@ export class ProductCreateComponent implements OnInit {
 
   idContact: string;
   idContract: string;
-  products: ProductCatalogue[];
+  products = [];
 
 
   constructor(private http: HttpClient, private router: Router, private route: ActivatedRoute ) {
@@ -78,16 +75,16 @@ export class ProductCreateComponent implements OnInit {
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
   }
-  saveProduct() {
+  calcProduct() {
     this.selection.selected.forEach(item => {
       const index: number = this.dataSource.data.findIndex(d => d === item);
       this.dataSource.data.slice(index);
-      const productCatalogue = this.data[index];
+      const p: ProductCatalogue  = this.data[index];
       console.log(this.data[index].name);
-      this.products.push(productCatalogue);
-     // this.saveProcuctBack(this.products);
+      this.products.push(p);
     });
-   this.selection = new SelectionModel<Element>(true, []);
+    console.log(this.products.length);
+    this.selection = new SelectionModel<Element>(true, []);
   }
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
@@ -96,8 +93,9 @@ export class ProductCreateComponent implements OnInit {
       this.dataSource.data.forEach(row => this.selection.select(row));
   }
 
-  saveProcuctBack(productCatalogue) {
-    this.http.post('/api/products/' + this.idContact + '/' +  this.idContract, productCatalogue)
+  saveProcuct() {
+    this.calcProduct();
+    this.http.post('/api/products/' + this.idContact + '/' +  this.idContract, this.products)
       .subscribe(res => {
         this.router.navigate(['/product'], {queryParams: {idContract: this.idContract, idContact: this.idContact}});
       }, (err) => {

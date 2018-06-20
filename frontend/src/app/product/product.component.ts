@@ -20,13 +20,13 @@ export class ProductComponent implements OnInit {
 
   displayedColumns = ['name', 'description', 'imageUrl', 'quanitity', 'price', 'productDetails'];
 
-  prod: any;
   contract = {};
   idContact:  string;
   idContract: string;
   idProduct:  string;
   preise = [];
   calcPrice: string;
+  calcMwst:  number;
 
 
   constructor(private router: Router, private route: ActivatedRoute, private http: HttpClient) { }
@@ -55,25 +55,26 @@ export class ProductComponent implements OnInit {
       }
     );
   }
-
-    calcSum() {
-      this.http.get('/api/products/' + this.idContact + '/' + this.idContract).pipe(
-        map(res => {
-          return res['products'];
-        })
-        )
-        .subscribe(products => {
-          if (products.length > 0) {
-            // tslint:disable-next-line:no-shadowed-variable
-            products.forEach(element => {
-              this.preise.push(element.price);
-            });
-            const sum = this.preise.reduce((acc, val) => acc + val);
-            this.calcPrice =  Math.floor(sum / 100 * 7.7) + sum;
-          } else {
-            this.calcPrice = '';
-          }
-        }
-      );
-    }
+  calcSum() {
+    this.http.get('/api/products/' + this.idContact + '/' + this.idContract).pipe(
+      map(res => {
+        return res['products'];
+      })
+    )
+    .subscribe(products => {
+      if (products.length > 0) {
+      // tslint:disable-next-line:no-shadowed-variable
+        products.forEach(element => {
+          this.preise.push(element.price);
+        });
+        const sum = this.preise.reduce((acc, val) => acc + val);
+        const mwst = Math.round(sum * 7.7 / 100 * 20) / 20;
+      //  ROUND(SUM(ABOVE)*7.7/100*20;0)/20
+        this.calcMwst = mwst;
+        this.calcPrice =  sum + mwst;
+      } else {
+        this.calcPrice = '';
+      }
+    });
+  }
 }
