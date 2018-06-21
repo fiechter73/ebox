@@ -10,7 +10,7 @@
         <mat-list-item role="listitem"> Building Information: {{ contract.buildingInfo }}</mat-list-item>
         <mat-list-item role="listitem"> Miet Startdatum:{{ contract.contractStartDate | date : "dd-MM-y" }} </mat-list-item>
         <mat-list-item role="listitem"> Miet Enddatum: {{ contract.contractEndDate | date : "dd-MM-y"}} </mat-list-item>
-        <mat-list-item role="listitem"> Aktuell Laufzeit in Monaten: {{ contract.runningTime }} </mat-list-item>
+        <mat-list-item role="listitem"> Aktuell Laufzeit in Monaten: <b>{{ contract.runningTime }}</b> </mat-list-item>
       </mat-list>
     </mat-card-content>
     <mat-card-actions>
