@@ -19,14 +19,14 @@
       <ng-container matColumnDef ="buildingInfo">
           <th mat-header-cell *matHeaderCellDef> Information </th>
           <td mat-cell *matCellDef ="let element"> {{element.buildingInfo}} </td>
-      </ng-container>     
+      </ng-container>          
       <ng-container matColumnDef ="contractStartDate">
           <th mat-header-cell *matHeaderCellDef> Contract start date </th>
-          <td mat-cell *matCellDef ="let element"> {{element.contractStartDate}} </td>
+          <td mat-cell *matCellDef ="let element"> {{element.contractStartDate | date : "dd-MM-y" }} </td>
       </ng-container>
       <ng-container matColumnDef ="contractEndDate">
           <th mat-header-cell *matHeaderCellDef> Contract end date </th>
-          <td mat-cell *matCellDef ="let element"> {{element.contractEndDate}} </td>
+          <td mat-cell *matCellDef ="let element"> {{element.contractEndDate  | date : "dd-MM-y"}} </td>
       </ng-container>
       <ng-container matColumnDef ="contractDetails">
         <th mat-header-cell *matHeaderCellDef> Contract Details</th>

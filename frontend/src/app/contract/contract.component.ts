@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-contract',
   templateUrl: './contract.component.html',
@@ -9,7 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ContractComponent implements OnInit {
 
-  displayedColumns = ['type', 'boxNr', 'buildingInfo', 'contractStartDate', 'contractEndDate', 'contractDetails', 'addProducts'];
+  // tslint:disable-next-line:max-line-length
+  displayedColumns = ['type', 'boxNr', 'buildingInfo', 'contractStartDate',  'contractEndDate', 'contractDetails', 'addProducts'];
   contact = {};
   idContract: string;
   idContact: string;
@@ -26,8 +28,8 @@ export class ContractComponent implements OnInit {
   getContactDetail(id) {
     this.http.get('/api/contacts/' + id).subscribe(data => {
       this.contact = data;
-      console.log(this.contact);
+      console.log('Data: ' + this.contact);
+     // console.log(new Date(this.contact.contracts[0].contractStartDate).toISOString().slice(0, 10));
     });
   }
-
 }

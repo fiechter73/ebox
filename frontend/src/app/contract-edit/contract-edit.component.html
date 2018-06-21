@@ -14,28 +14,28 @@
         </div>    
         <div class="form-group">
           <mat-form-field class="example-full-width">
-            <input matInput  type="text" placeholder="Box Number" class="form-control" [(ngModel)]="contract.boxNr" name="boxNr" required>
+            <input matInput  type="text" placeholder="Box Number" class="form-control" [(ngModel)]="contract.boxNr" name="contract.boxNr" required>
           </mat-form-field>    
         </div>
         <div class="form-group">
           <mat-form-field class="example-full-width">
             <input matInput  type="text" placeholder="Building Information"  class="form-control" [(ngModel)]="contract.buildingInfo" name="buildingInfo" required>
           </mat-form-field> 
-        </div>
+        </div>     
         <div class="form-group">
         <mat-form-field class="example-full-width">
-          <input  matInput [matDatepicker]="picker" placeholder="Contract start date" class="form-control" [(ngModel)]="contract.contractStartDate" name="contractStartDate" required>
+          <input matInput [matDatepicker]="picker" placeholder="Contract start date" class="form-control" [(ngModel)]="contract.contractStartDate" name="contractStartDate" required>
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
         </div>
         <div class="form-group">
-          <mat-form-field class="example-full-width">
-            <input  matInput [matDatepicker]="picker1" placeholder="Contract end date" class="form-control" [(ngModel)]="contract.contractEndDate" name="contractEndDate" required>
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
+        <mat-form-field class="example-full-width">
+          <input matInput [matDatepicker]="picker1" placeholder="Contract end date" class="form-control" [(ngModel)]="contract.contractEndDate" name="contractEndDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
           </mat-form-field>
-          </div>
+        </div>
         <div class="form-group">
           <button mat-raised-button color="primary" type="submit" [disabled]="!contractForm.form.valid">Update</button>
           <a mat-raised-button color="warn"  [routerLink]="['/contract']" [queryParams]=" { idContract: contract.id, idContact: idContact }" class="btn btn-danger">BACK</a>
